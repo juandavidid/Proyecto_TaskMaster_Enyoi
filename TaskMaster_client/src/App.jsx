@@ -7,6 +7,10 @@ import Login from './pages/login/Login'
 import Passrequestreset from "./pages/login/passrequestreset/Passrequestreset";
 import ResetPassword from './components/ResetPassword';
 
+import { Navigate } from 'react-router-dom';
+
+import ProtectedRoute from "./components/protectedroute/ProtectedRoute";
+
 function App() {
 
 
@@ -15,14 +19,36 @@ function App() {
     //Componente que permite Envolver todo una sola pagina
     <BrowserRouter>
       <Routes>
+
         {/*RUTA DE INICIAL  */}
-        <Route path="/" element={<Home />} />
+
+        <Route path="/" element={<Navigate to="/login" />} />
+
+
+        {/*RUTA DE LOGIN */}
+        <Route path="/login" element={<Login />} />
+
+        {/*RUTA PAGINA PRINCIPAL */}
+
+
+        <Route
+          path="/home"
+          element={
+
+            <ProtectedRoute>
+              <Home />
+
+            </ProtectedRoute>
+
+
+          }
+        />
+
 
         {/*RUTA DE REGISTRO */}
         <Route path="/register" element={<Register />} />
 
-        {/*RUTA DE LOGIN */}
-        <Route path="/login" element={<Login />} />
+
 
         {/*RUTA DE PARA GESTIONAR RETABLECER CONTRASEÑA */}
         <Route path="/Passrequestreset" element={<Passrequestreset />} />

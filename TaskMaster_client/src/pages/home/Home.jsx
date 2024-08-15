@@ -1,22 +1,16 @@
 import './home.css'
 
-
-import { useNavigate } from 'react-router-dom';
-
+//Importan Contexto de React
+import { useAuthContext } from '../../context/AuthContext';
 
 
 const Home = () => {
-    const navigate = useNavigate();
+    const { logout } = useAuthContext();
 
     const handleLogout = () => {
         // Eliminar el token del localStorage o cookies
-        localStorage.removeItem('token'); // Si lo estás guardando en localStorage
-
-        // Redirigir al usuario a la página de inicio de sesión
-        navigate('/login'); // Cambia '/login' por la ruta de tu página de inicio de sesión
+        logout()
     };
-
-
 
     return (
         <div>

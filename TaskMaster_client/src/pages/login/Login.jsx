@@ -3,6 +3,8 @@ import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+import { useAuthContext } from '../../context/AuthContext';
+
 
 const Login = () => {
 
@@ -15,7 +17,14 @@ const Login = () => {
     // ME ENVIA A OTRA RUTA QUE LE DEFINA
     const navigate = useNavigate();
 
+
+    // METODO DE CONTEXTO
+    const { login } = useAuthContext();
+    console.log("Variable Login", login);
+
+
     const handleClick = async (e) => {
+
         e.preventDefault(); // Evitar el comportamiento por defecto del formulario
 
         // CREAR UN OBJETO CON LOS DATOS DEL USARIO
@@ -31,7 +40,10 @@ const Login = () => {
 
             //Almacenar el token en localStorage
             const token = responseLogin.data.token;
-            localStorage.setItem('token', token);
+            //localStorage.setItem('token', token);
+
+            //ENVIA EL TOKEN DEL USUARIO
+            login(token);
 
             console.log("Informacion cuando inicia sesion", responseLogin);
             setSuccessMessage('Iniciio de Sesion  exitoso!'); // Mensaje de éxito
@@ -42,7 +54,9 @@ const Login = () => {
             setPassword('');
 
             // Me Envia a la Ruta de Principal de Mi pagina
-            navigate('/')
+            navigate('/home')
+
+
 
 
         } catch (err) {
