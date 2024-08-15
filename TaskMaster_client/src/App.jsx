@@ -1,34 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//IMPORTAMOS LAS RUTAS
+import Home from './pages/home/Home'
+import Register from './pages/register/Register'
+import Login from './pages/login/Login'
+import Passrequestreset from "./pages/login/passrequestreset/Passrequestreset";
+import ResetPassword from './components/ResetPassword';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+    //Componente que permite Envolver todo una sola pagina
+    <BrowserRouter>
+      <Routes>
+        {/*RUTA DE INICIAL  */}
+        <Route path="/" element={<Home />} />
+
+        {/*RUTA DE REGISTRO */}
+        <Route path="/register" element={<Register />} />
+
+        {/*RUTA DE LOGIN */}
+        <Route path="/login" element={<Login />} />
+
+        {/*RUTA DE PARA GESTIONAR RETABLECER CONTRASEÑA */}
+        <Route path="/Passrequestreset" element={<Passrequestreset />} />
+
+        {/*RUTA PARA RESTAURA CONTRASEÑA CONFIGURADA PARA ACEPTAR PARAMETROS */}
+        <Route path="/resetpassword/:resetToken" element={<ResetPassword />} />
+
+
+      </Routes>
+    </BrowserRouter>
+
   )
 }
 
