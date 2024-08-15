@@ -96,6 +96,11 @@ const Login = () => {
                 <span> ¿Olvide Mi Contraseña? </span>
             </Link>
 
+            <Link to={"/register"}>
+                <span> Registrar usuario </span>
+
+            </Link>
+
 
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
