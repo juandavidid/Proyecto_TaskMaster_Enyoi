@@ -49,3 +49,31 @@ exports.createUser = async (req, res) => {
         res.status(500).send('Hubo un error creando el usuario');
     }
 }
+
+exports.getUser = async (req, res) => {
+
+    try {
+        // Obtener el usuario desde el token
+        const userId = req.user.id;
+
+        // Buscar la información del usuario en la base de datos
+        const user = await Users.findById(userId).select('-password'); // Excluir el campo de la contraseña
+
+        if (!user) {
+            return res.status(404).json({ msg: 'Usuario no encontrado' });
+        }
+
+        // Enviar la información del usuario
+        res.json({ user });
+
+
+    } catch (error) {
+
+        console.log('Hay un error: ', error);
+        res.status(500).send('Hubo un error obteniendo la información del usuario');
+    }
+
+
+
+
+}
