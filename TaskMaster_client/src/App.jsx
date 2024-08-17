@@ -6,6 +6,7 @@ import Register from './pages/register/Register'
 import Login from './pages/login/Login'
 import Passrequestreset from "./pages/login/passrequestreset/Passrequestreset";
 import ResetPassword from './components/ResetPassword';
+import Profile from './pages/profile/Profile';
 
 import { Navigate } from 'react-router-dom';
 
@@ -55,6 +56,10 @@ function App() {
 
         {/*RUTA PARA RESTAURA CONTRASEÑA CONFIGURADA PARA ACEPTAR PARAMETROS */}
         <Route path="/resetpassword/:resetToken" element={<ResetPassword />} />
+
+        {/*RUTA DE CONFIGURACION DE PERFIL */}
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
 
 
       </Routes>

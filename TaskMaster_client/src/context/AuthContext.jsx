@@ -21,6 +21,8 @@ export function AuthProvider({ children }) {
 
     const [loading, setLoading] = useState(true); // Estado para manejar la carga inicial
 
+    const [token, setToken] = useState(null);
+
 
     console.log("Estado de Authenticacion", isAuthenticated);
 
@@ -46,6 +48,7 @@ export function AuthProvider({ children }) {
         // Aquí guardarías el token en localStorage o cookies
         localStorage.setItem('authToken', token);
         setIsAuthenticated(true);
+        setToken(token);
     };
 
     console.log("Funcion login", login)
@@ -57,10 +60,11 @@ export function AuthProvider({ children }) {
         setIsAuthenticated(false);
     };
 
+
     console.log("Fuinciones", logout);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, loading }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, loading, token }}>
             {children}
         </AuthContext.Provider>
     );

@@ -1,0 +1,11 @@
+.container {
+
+    height: 200vh;
+    background-color: beige;
+}
+
+.containerProfilePhoto {
+    width: 250px;
+    height: 200px;
+    background-color: aliceblue;
+}

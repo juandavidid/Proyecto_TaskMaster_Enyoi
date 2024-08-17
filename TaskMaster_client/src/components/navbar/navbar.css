@@ -1,0 +1,11 @@
+.navIcon {
+
+    height: 50px;
+    background-color: grey;
+    display: flex;
+    justify-content: end;
+}
+
+.iconUser {
+    margin: 5px 5px 0px 0px;
+}
