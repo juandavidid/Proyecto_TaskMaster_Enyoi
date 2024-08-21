@@ -7,6 +7,7 @@ import Login from './pages/login/Login'
 import Passrequestreset from "./pages/login/passrequestreset/Passrequestreset";
 import ResetPassword from './components/ResetPassword';
 import Profile from './pages/profile/Profile';
+import ChangePassword from './components/changePassword/ChangePassword';
 
 import { Navigate } from 'react-router-dom';
 
@@ -59,6 +60,9 @@ function App() {
 
         {/*RUTA DE CONFIGURACION DE PERFIL */}
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
+        {/*RUTA DE CONFIGURACION DE PERFIL CAMBIO CONTRASEÑA */}
+        <Route path="/changePassword" element={<ProtectedRoute><ChangePassword /> </ProtectedRoute>} />
 
 
 

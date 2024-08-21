@@ -9,9 +9,10 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Dropdownmenu from '../dropdownmenu/Dropdownmenu';
 //Importamos Hook
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = ({ showSecurity }) => {
 
     //Inicializamos Hook
     const [isOpen, setIsOpen] = useState(false)
@@ -28,6 +29,15 @@ const Navbar = () => {
 
             {isOpen && (
                 <Dropdownmenu />
+            )}
+
+            {showSecurity && (
+                <div className="security-option">
+                    <Link to="/changePassword">
+                        <span>Seguridad</span>
+                    </Link>
+
+                </div>
             )}
 
 
