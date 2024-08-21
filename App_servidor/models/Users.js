@@ -26,7 +26,13 @@ const UserSchema = mongoose.Schema({
         default: false
     },
     resetPasswordToken: String,
-    resetPasswordExpire: Date
+    resetPasswordExpire: Date,
+    profilePhoto: {
+        type: Buffer, // Campo para almacenar la imagen como datos binarios
+    },
+    profilePhotoType: {
+        type: String, // Campo para almacenar el tipo MIME de la imagen (por ejemplo, 'image/jpeg')
+    }
 });
 
 module.exports = mongoose.model('Users', UserSchema);

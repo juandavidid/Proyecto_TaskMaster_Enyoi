@@ -102,3 +102,55 @@ exports.updateUserName = async (req, res) => {
     }
 };
 
+
+// Ruta para subir una imagen de perfil
+exports.uploadProfileImage = async (req, res) => {
+
+    console.log("Informacion del insomnia", req.body);
+
+    try {
+        const userId = req.user.id; // Obtener el ID del usuario desde el middleware de autenticación
+        const file = req.files?.profilePhoto; // Asegúrate de que `req.files` y `profilePhoto` existan
+
+        if (!file) {
+            return res.status(400).json({ msg: 'No se ha enviado ninguna imagen' });
+        }
+
+        const user = await Users.findById(userId);
+        if (!user) return res.status(404).json({ msg: 'Usuario no encontrado' });
+
+        user.profilePhoto = file.data;
+        user.profilePhotoType = file.mimetype;
+
+        await user.save();
+        res.json({ msg: 'Imagen de perfil actualizada con éxito' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Error en el servidor');
+    }
+
+}
+
+// Obtener la imagen de perfil
+exports.getProfileImage = async (req, res) => {
+
+    try {
+        const user = await Users.findById(req.params.userId);
+        if (!user || !user.profilePhoto) return res.status(404).json({ msg: 'Imagen no encontrada' });
+
+
+        // Convertir el Buffer a base64
+        //const base64Image = user.profilePhoto.toString('base64');
+
+
+
+        res.set('Content-Type', user.profilePhotoType);
+        res.send(user.profilePhoto);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Error en el servidor');
+    }
+}
+
+

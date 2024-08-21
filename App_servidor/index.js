@@ -3,6 +3,8 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 
+const fileUpload = require('express-fileupload');
+
 //Creating the server
 const app = express();
 
@@ -14,6 +16,9 @@ app.use(cors());
 
 //Enable express.json
 app.use(express.json({ extended: true }));
+
+// Enable file upload middleware
+app.use(fileUpload()); // Agrega esta línea para manejar archivos subidos
 
 // app PORT
 const PORT = process.env.PORT || 4000;

@@ -28,6 +28,11 @@ router.get('/Information', auth, usersController.getUser);
 router.put('/update-name', auth, [check('nameuser', 'El nombre np puede estar vacio').trim().isLength({ min: 1 })], usersController.updateUserName);
 
 
+// Cargar Imagen de usuario
+router.post('/profile/photo', auth, usersController.uploadProfileImage);
+
+// Obtener la imagen de perfil
+router.get('/profile/photo/:userId', auth, usersController.getProfileImage);
 
 
 module.exports = router;
