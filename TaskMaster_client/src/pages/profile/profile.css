@@ -5,7 +5,21 @@
 }
 
 .containerProfilePhoto {
-    width: 250px;
-    height: 200px;
+    width: 850px;
+    height: 500px;
     background-color: aliceblue;
+}
+
+.containerProfilePhoto img {
+    width: 150px;
+    /* Ajusta el ancho según lo que necesites */
+    height: 150px;
+    /* Ajusta la altura según lo que necesites */
+    object-fit: cover;
+    /* Esto asegura que la imagen se recorte correctamente para llenar el área sin distorsionarse */
+    border-radius: 50%;
+    /* Esto convierte la imagen en un círculo si lo deseas */
+    margin-bottom: 10px;
+    /* Añadir espacio debajo de la imagen */
+
 }

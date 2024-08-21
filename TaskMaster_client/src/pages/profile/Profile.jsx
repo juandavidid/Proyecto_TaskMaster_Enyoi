@@ -11,13 +11,12 @@ const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true); // Estado de carga
     const [error, setError] = useState(null);
-
     const [Openphoto, setOpenphoto] = useState(false);
-
     //Estudiar parte del codigo 
-
     const [isEditingName, setIsEditingName] = useState(false);
     const [newName, setNewName] = useState('');
+
+
 
 
     useEffect(() => {
@@ -35,9 +34,36 @@ const Profile = () => {
             try {
                 // Hacer la petición GET al servidor
                 const response = await axios.get('http://localhost:4000/api/users/Information', config);
+
+                const userId = response.data.user._id;
+
+                // Obtener la imagen de perfil del usuario
+                const photoResponse = await axios.get(`http://localhost:4000/api/users/profile/photo/${userId}`, {
+                    responseType: 'arraybuffer', // Asegurarse de recibir los datos como arraybuffer
+                    headers: {
+                        'x-auth-token': token,
+                    },
+                });
+
+                const base64Image = arrayBufferToBase64(photoResponse.data);
+                const profilePhotoType = photoResponse.headers['content-type'];
+
+                // Verifica los datos del perfil de usuario
+                console.log('profilePhotoType:', response.data.user.profilePhotoType);
+                console.log('profilePhoto:', response.data.user.profilePhoto);
+
+
                 // Manejar la respuesta
                 console.log('Información del usuario:', response.data);
-                setUserData(response.data);
+                //setUserData(response.data);
+                setUserData({
+                    ...response.data,
+                    user: {
+                        ...response.data.user,
+                        profilePhoto: base64Image,
+                        profilePhotoType: profilePhotoType,
+                    },
+                });
                 setNewName(response.data?.user.nameuser); // Inicializar con el nombre actual
             } catch (error) {
                 // Manejar errores
@@ -56,6 +82,16 @@ const Profile = () => {
 
 
     }, [])
+
+    const arrayBufferToBase64 = (buffer) => {
+        let binary = '';
+        const bytes = new Uint8Array(buffer);
+        const len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    };
 
     //Estudiar parte de este codigo
     const handleNameClick = () => {
@@ -90,6 +126,19 @@ const Profile = () => {
 
     console.log("Informacio de Usuario", userData);
 
+    const handleClick = () => {
+        setOpenphoto(true);
+    }
+
+    const handleClosePhoto = () => {
+        setOpenphoto(false);
+        // Optionally, refresh user data to get the updated image
+        // getUserInfo();
+    };
+
+
+
+
 
     if (loading) {
         return <p>Cargando...</p>; // Mostrar un mensaje de carga mientras se obtiene la información
@@ -99,9 +148,6 @@ const Profile = () => {
         return <p>Error al cargar la información del usuario.</p>;
     }
 
-    const handleClick = () => {
-        setOpenphoto(true);
-    }
 
     return (
         <div className="container">
@@ -109,12 +155,25 @@ const Profile = () => {
             <Navbar showSecurity={true} />
             <h1>PAGINA Administrar tu informacion personal</h1>
             <h2>Foto de Perfil e Imagen de Encabezado</h2>
+
             <div className="containerProfilePhoto">
                 <h2> Mostra contenido</h2>
                 <h1> Foto de perfil Usuario  </h1>
+                {userData?.user.profilePhoto ? (
+                    <img
+                        src={`data:${userData.user.profilePhotoType};base64,${userData.user.profilePhoto}`}
+                        alt="Perfil"
+                    />
+                ) : (
+                    <p>No se ha cargado la imagen de perfil.</p>
+                )}
                 <button onClick={handleClick}>Agregar imagen</button>
             </div>
+
+
             <h2>Acerta de ti</h2>
+
+
             <div className="containerProfilePhoto">
                 <h2> Mostra contenido</h2>
                 {/* <p>  Nombre : {userData?.user.nameuser || "Información no disponible"} </p>*/}
@@ -141,7 +200,7 @@ const Profile = () => {
 
             </div>
 
-            {Openphoto && <Profilephoto />}
+            {Openphoto && <Profilephoto userId={userData?.user._id} onClose={handleClosePhoto} />}
         </div>
     )
 }
