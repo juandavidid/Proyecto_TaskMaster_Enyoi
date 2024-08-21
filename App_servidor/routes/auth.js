@@ -1,6 +1,6 @@
 //Routes to authenticate users
-const express = require('express');
-const router = express.Router();
+const express = require('express'); //
+const router = express.Router();  //
 const { check } = require('express-validator');
 const authController = require('../controllers/authController');
 const auth = require('../middleware/auth');
@@ -8,8 +8,11 @@ const auth = require('../middleware/auth');
 const crypto = require('crypto');
 const User = require('../models/Users'); // Asegúrate de que la ruta sea correcta
 
-
 const bcryptjs = require('bcryptjs');
+
+const { verifyToken } = require('../middleware/auth');
+
+
 
 // Iniciar sesion 
 // api/auth
@@ -51,6 +54,10 @@ router.put('/reset-password/:resetToken', async (req, res) => {
         res.status(500).json({ msg: 'Hubo un error al restablecer la contraseña' });
     }
 });
+
+
+// Ruta para cambiar contraseña usuario con Iniciar sesion
+router.post('/change-password', auth, authController.changePassword);
 
 
 

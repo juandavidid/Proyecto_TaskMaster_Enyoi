@@ -74,6 +74,31 @@ exports.getUser = async (req, res) => {
     }
 
 
-
-
 }
+
+exports.updateUserName = async (req, res) => {
+    // Verificar errores de validación
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const userId = req.user.id;
+        const { nameuser } = req.body;
+
+        // Buscar y actualizar el nombre del usuario
+        const user = await Users.findByIdAndUpdate(userId, { nameuser }, { new: true }).select('-password');
+
+        if (!user) {
+            return res.status(404).json({ msg: 'Usuario no encontrado' });
+        }
+
+        // Enviar la información del usuario actualizada
+        res.json({ user });
+    } catch (error) {
+        console.error('Hay un error: ', error);
+        res.status(500).send('Hubo un error actualizando el nombre de usuario');
+    }
+};
+

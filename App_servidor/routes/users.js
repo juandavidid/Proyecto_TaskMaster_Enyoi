@@ -20,6 +20,16 @@ router.post('/',
 //api/users
 router.get('/Information', auth, usersController.getUser);
 
+
+
+// Actualizar nombre de usuario
+// api/users
+
+router.put('/update-name', auth, [check('nameuser', 'El nombre np puede estar vacio').trim().isLength({ min: 1 })], usersController.updateUserName);
+
+
+
+
 module.exports = router;
 
 

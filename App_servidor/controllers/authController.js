@@ -59,3 +59,37 @@ exports.getAuthUser = async (req, res) => {
         res.status(500).json({ msg: 'Hubo un error accediendo al usuario autenticado' });
     }
 }
+
+
+
+exports.changePassword = async (req, res) => {
+
+    try {
+        const { currentPassword, newPassword } = req.body;
+        const userId = req.user.id;
+
+        // Buscar al usuario en la base de datos
+        const user = await Users.findById(userId);
+
+        // Verificar la contraseña actual
+        const isMatch = await bcryptjs.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'La contraseña actual es incorrecta' });
+        }
+
+        // Hashear la nueva contraseña
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(newPassword, salt);
+
+        // Actualizar la contraseña en la base de datos
+        user.password = hashedPassword;
+        await user.save();
+
+        res.status(200).json({ message: 'Contraseña cambiada con éxito' });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error del servidor' });
+    }
+
+
+}
