@@ -8,7 +8,7 @@ const Passrequestreset = () => {
         e.preventDefault();
         try {
 
-            const response = await axios.post('http://localhost:4000/api/password/forgot-password', { email });
+            const response = await axios.post('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/password/forgot-password', { email });
             alert(response.data.msg);
 
         } catch (error) {

@@ -11,6 +11,7 @@ const Home = () => {
         <div>
             <Navbar />
             <h1>PAGINA PRINCIPAL DEL GESTOR DE TAREAS</h1>
+
         </div>
     )
 }

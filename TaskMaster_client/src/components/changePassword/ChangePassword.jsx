@@ -17,7 +17,7 @@ const ChangePassword = () => {
             const token = localStorage.getItem('authToken'); // Recuperar el token de localStorage
             console.log("Informacion del token desde Login", token);
 
-            const res = await axios.post('http://localhost:4000/api/auth/change-password', {
+            const res = await axios.post('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/auth/change-password', {
                 currentPassword,
                 newPassword,
             }, {

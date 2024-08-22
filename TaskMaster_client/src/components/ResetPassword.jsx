@@ -15,7 +15,7 @@ const ResetPassword = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:4000/api/auth/reset-password/${resetToken}`, { password });
+            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/auth/reset-password/${resetToken}`, { password });
             alert(response.data.msg);
             navigate("/login")
 

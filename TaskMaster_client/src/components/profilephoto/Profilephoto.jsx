@@ -30,7 +30,7 @@ const Profilephoto = ({ userId, onClose }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             };
-            await axios.post('http://localhost:4000/api/users/profile/photo', formData, config);
+            await axios.post('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/profile/photo', formData, config);
             alert('Imagen de perfil actualizada con éxito');
             onClose(); // Cerrar el modal o el componente después de subir la imagen
         } catch (error) {

@@ -33,12 +33,12 @@ const Profile = () => {
 
             try {
                 // Hacer la petición GET al servidor
-                const response = await axios.get('http://localhost:4000/api/users/Information', config);
+                const response = await axios.get('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/Information', config);
 
                 const userId = response.data.user._id;
 
                 // Obtener la imagen de perfil del usuario
-                const photoResponse = await axios.get(`http://localhost:4000/api/users/profile/photo/${userId}`, {
+                const photoResponse = await axios.get(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/profile/photo/${userId}`, {
                     responseType: 'arraybuffer', // Asegurarse de recibir los datos como arraybuffer
                     headers: {
                         'x-auth-token': token,
@@ -111,7 +111,7 @@ const Profile = () => {
         };
 
         try {
-            const response = await axios.put('http://localhost:4000/api/users/update-name', { nameuser: newName }, config);
+            const response = await axios.put('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/update-name', { nameuser: newName }, config);
             setUserData({ ...userData, user: { ...userData.user, nameuser: newName } });
             setIsEditingName(false);
         } catch (error) {

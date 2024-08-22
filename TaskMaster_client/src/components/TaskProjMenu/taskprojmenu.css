@@ -1,10 +1,11 @@
-.menu {
-    margin: 30px 10px 0 0;
+.menutaskProj {
+
+    width: 100px;
     height: 70px;
     background-color: bisque;
     position: absolute;
     display: flex;
-    top: 40px;
-    right: 3px;
+    top: 16px;
+    left: 120px;
 
 }
