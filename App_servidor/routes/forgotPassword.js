@@ -34,7 +34,7 @@ router.post('/forgot-password', async (req, res) => {
         await user.save();
 
         // Crear la URL de restablecimiento de contraseña
-        const resetUrl = `http://localhost:5173/resetpassword/${resetToken}`;
+        const resetUrl = `https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/resetpassword/${resetToken}`;
 
         console.log("Crea URL ", resetUrl);
 
