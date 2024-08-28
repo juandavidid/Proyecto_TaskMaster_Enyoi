@@ -6,7 +6,7 @@ const TaskProjMenu = () => {
     return (
         <div className="menutaskProj">
             <ul>
-                <Link >
+                <Link to="/task" >
                     <li><span >Tarea</span></li>
                 </Link>
                 <Link to="/projects">

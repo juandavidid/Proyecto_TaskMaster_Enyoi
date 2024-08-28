@@ -2,3 +2,22 @@
     width: 100vw;
     height: 50px;
 }
+
+.ContainerPrincipal {
+    display: flex;
+}
+
+
+.listElements {
+    width: 200px;
+    height: 500px;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
+
+.ContainerInformation {
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+}

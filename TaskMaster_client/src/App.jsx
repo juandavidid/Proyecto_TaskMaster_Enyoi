@@ -10,6 +10,8 @@ import Profile from './pages/profile/Profile';
 import ChangePassword from './components/changePassword/ChangePassword';
 import Projects from "./components/projects/Projects";
 
+import Tasks from "./components/tasks/Tasks";
+
 import { Navigate } from 'react-router-dom';
 
 import ProtectedRoute from "./components/protectedroute/ProtectedRoute";
@@ -67,6 +69,9 @@ function App() {
 
         {/*RUTA PARA CREAR PROYECTO */}
         <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
+
+        {/*RUTA PARA CREAR TAREA PARA ASOCIARLA AL PROYECTO */}
+        <Route path="task" element={<ProtectedRoute><Tasks /></ProtectedRoute>} />
 
 
 
