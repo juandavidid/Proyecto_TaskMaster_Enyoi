@@ -6,6 +6,10 @@ const ProjectSchema = mongoose.Schema({
         require: true,
         trim: true
     },
+    description: { // Nuevo campo de descripción
+        type: String,
+        trim: true
+    },
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
