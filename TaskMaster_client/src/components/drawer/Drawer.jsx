@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Drawer.css'; // Asegúrate de crear y configurar este archivo CSS
-
+import PropTypes from 'prop-types';
 /*
 const Drawer = ({ isOpen, onClose, selectedTask, onSaveTask, onDeleteTask, showSuccessMessage, setShowSuccessMessage }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -85,6 +85,7 @@ const Drawer = ({ isOpen, onClose, selectedTask, onSaveTask, onDeleteTask, showS
                         </div>
                     ) : (
                         <div className="view-container">
+
                             <span onClick={() => setIsEditing(true)}>{selectedTask.taskname}</span>
 
                             <button onClick={onDeleteTask}>Eliminar</button>
@@ -106,6 +107,19 @@ const Drawer = ({ isOpen, onClose, selectedTask, onSaveTask, onDeleteTask, showS
 
         </div>
     );
+};
+
+// Agrega las validaciones de PropTypes
+Drawer.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    selectedTask: PropTypes.shape({
+        taskname: PropTypes.string,
+    }),
+    onSaveTask: PropTypes.func.isRequired,
+    onDeleteTask: PropTypes.func.isRequired,
+    showSuccessMessage: PropTypes.bool.isRequired,
+    setShowSuccessMessage: PropTypes.func.isRequired,
 };
 
 export default Drawer;

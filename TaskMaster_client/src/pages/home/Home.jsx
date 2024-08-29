@@ -299,6 +299,7 @@ const Home = () => {
                         isOpen={isDrawerOpen}
                         onClose={toggleDrawer}
                         selectedTask={selectedTask}
+
                         onSaveTask={handleSaveTask}
                         onDeleteTask={handleDeleteTask}
                         showSuccessMessage={showSuccessMessage}
