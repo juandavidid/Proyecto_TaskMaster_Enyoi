@@ -6,9 +6,23 @@ const TasksSchema = mongoose.Schema({
         require: true,
         trim: true
     },
+    description: {
+        type: String,
+        trim: true
+    },
+    priority: {
+        type: String,
+        enum: ['Alta', 'Media', 'Baja'],
+        default: 'Media'
+    },
     statusTask: {
         type: Boolean,
         default: false
+    },
+    state: {
+        type: String,
+        enum: ['Pendiente', 'En progreso', 'Completado'],
+        default: 'Pendiente'
     },
     createDate: {
         type: Date,
