@@ -21,3 +21,42 @@
     height: 100vh;
     background-color: aquamarine;
 }
+
+.TaskDetailPanel input {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.TaskDetailPanel button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.successMessage {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.successMessage button {
+    background-color: #155724;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.successMessage button:hover {
+    background-color: #0b2e13;
+}
