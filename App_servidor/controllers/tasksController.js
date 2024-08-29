@@ -81,12 +81,30 @@ exports.updateTask = async (req, res) => {
         }
         //Constructuring the new task
         const newTask = {};
-        const { taskname, statusTask } = req.body;
+        const { taskname, statusTask, state, projectId } = req.body;
         if (taskname) {
             newTask.taskname = taskname;
         }
         if (statusTask !== null) {
             newTask.statusTask = statusTask;
+        }
+
+        if (state) {
+            newTask.state = state;
+        }
+
+
+
+        if (projectId) {
+            // Verificar si el nuevo projectId existe y pertenece al usuario autenticado
+            const newProject = await Projects.findOne({ _id: projectId });
+            if (!newProject) {
+                return res.status(404).json({ msg: 'El nuevo proyecto no existe' });
+            }
+            if (newProject.ownerId.toString() !== req.user.id) {
+                return res.status(401).json({ msg: 'No autorizado, el nuevo proyecto no pertenece al usuario autenticado' });
+            }
+            newTask.projectId = projectId;
         }
 
         //Updating task

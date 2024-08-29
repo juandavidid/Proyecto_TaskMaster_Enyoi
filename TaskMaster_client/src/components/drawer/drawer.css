@@ -30,3 +30,13 @@
     border-radius: 5px;
     text-align: center;
 }
+
+
+.drawer .task-details {
+    margin-top: 15px;
+}
+
+.drawer .task-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}

@@ -26,6 +26,16 @@ router.put('/:id',
     [
         check('taskname', 'Debe suministrar el nombre de la tarea o su estatus').if(check('statusTask').not().exists()).trim().isLength({ min: 1 }),
         check('statusTask', 'Debe suministrar el nombre de la tarea o su estatus').if(check('taskname').not().exists()).trim().isBoolean(),
+        // Validar que 'state' debe ser una cadena no vacía si se proporciona
+        check('state', 'El estado de la tarea es obligatorio y debe ser una cadena no vacía')
+            .optional()
+            .trim()
+            .isLength({ min: 1 }),
+
+        // Validar que 'projectId' debe ser un ID de MongoDB válido si se proporciona
+        check('projectId', 'El ID del proyecto debe ser un ID válido de MongoDB')
+            .optional()
+            .isMongoId(),
     ],
     tasksController.updateTask);
 

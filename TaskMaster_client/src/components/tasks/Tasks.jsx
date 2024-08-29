@@ -2,8 +2,6 @@ import './tasks.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-
 const Tasks = () => {
 
     const [taskname, setTaskname] = useState('');
@@ -11,6 +9,8 @@ const Tasks = () => {
     const [selectedProjectId, setSelectedProjectId] = useState('');
     const [successMessage, setSuccessMessage] = useState(''); // Estado para el mensaje de éxito
 
+    const [description, setDescription] = useState(''); // Estado para la descripción
+    const [priority, setPriority] = useState('Media'); // Estado para la prioridad con un valor por defecto
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -42,7 +42,7 @@ const Tasks = () => {
 
             const response = await axios.post(
                 'https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks',
-                { taskname, projectId: selectedProjectId },
+                { taskname, description, priority, projectId: selectedProjectId },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -54,6 +54,8 @@ const Tasks = () => {
             // Si la tarea se crea con éxito, muestra el mensaje
             setSuccessMessage('Tarea creada con éxito');
             setTaskname(''); // Limpiar el campo de la tarea
+            setDescription(''); // Limpiar el campo de la descripción
+            setPriority('Media'); // Reiniciar la prioridad al valor por defecto
             setSelectedProjectId(''); // Limpiar la selección del proyecto
 
             // Ocultar el mensaje después de unos segundos
@@ -81,6 +83,28 @@ const Tasks = () => {
                         onChange={(e) => setTaskname(e.target.value)}
                     />
                 </div>
+
+
+                <div>
+                    <label>Descripción:</label> {/* Nuevo campo para la descripción */}
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
+
+                <div>
+                    <label>Prioridad:</label> {/* Nuevo campo para la prioridad */}
+                    <select
+                        value={priority}
+                        onChange={(e) => setPriority(e.target.value)}
+                    >
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Media</option>
+                        <option value="Baja">Baja</option>
+                    </select>
+                </div>
+
                 <div>
                     <label>Seleccionar Proyecto:</label>
                     <select
@@ -96,7 +120,9 @@ const Tasks = () => {
                         ))}
                     </select>
                 </div>
+
                 <button type="submit">Crear Tarea</button>
+
             </form>
         </div>
     )
