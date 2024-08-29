@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Drawer.css'; // Asegúrate de crear y configurar este archivo CSS
+import './drawer.css'; // Asegúrate de crear y configurar este archivo CSS
 import PropTypes from 'prop-types';
 /*
 const Drawer = ({ isOpen, onClose, selectedTask, onSaveTask, onDeleteTask, showSuccessMessage, setShowSuccessMessage }) => {
