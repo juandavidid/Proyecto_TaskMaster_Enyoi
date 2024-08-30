@@ -47,7 +47,7 @@ const Home = () => {
                 const response = await axios.get(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/projects`, {
                     headers: { 'x-auth-token': token }
                 });
-                console.log("LISTA DE PROYECTOS ", response);
+                //console.log("LISTA DE PROYECTOS ", response);
                 setProjects(response.data.projects || []);
             } catch (error) {
                 console.error('Error al obtener proyectos:', error);
@@ -63,12 +63,12 @@ const Home = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                console.log("ID PROYECTO", selectedProjectId)
+                //console.log("ID PROYECTO", selectedProjectId)
                 if (selectedProjectId) {
                     const response = await axios.get(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${selectedProjectId}`, {
                         headers: { 'x-auth-token': token }
                     });
-                    console.log("LISTA DE TAREA ", response);
+                    //console.log("LISTA DE TAREA ", response);
                     setTasks(response.data.tasks || []);
                 }
             } catch (error) {
@@ -80,6 +80,39 @@ const Home = () => {
             fetchTasks();
         }
     }, [view, selectedProjectId, token]);
+
+    const handleSaveTaskName = async (taskId, newTaskName) => {
+        try {
+            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${taskId}`,
+                { taskname: newTaskName },
+                { headers: { 'x-auth-token': token } }
+            );
+            setTasks(tasks.map(t => t._id === taskId ? response.data : t));
+            setSelectedTask(response.data);
+            setShowSuccessMessage(true);
+        } catch (error) {
+            console.error("Error al actualizar el nombre de la tarea:", error);
+        }
+    };
+
+    const handleSaveTaskState = async (taskId, newState) => {
+        try {
+            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${taskId}`,
+                { state: newState },
+                { headers: { 'x-auth-token': token } }
+            );
+            setTasks(tasks.map(t => t._id === taskId ? response.data : t));
+            setSelectedTask(response.data);
+            setShowSuccessMessage(true);
+        } catch (error) {
+            console.error("Error al actualizar el estado de la tarea:", error);
+        }
+    };
+
+
+
+
+
 
 
     const renderContent = () => {
@@ -130,11 +163,6 @@ const Home = () => {
                             </div>
                         )}
 
-
-                        {console.log("SELELCCION TAREA", selectedTask)}
-
-
-
                     </div>
                 );
 
@@ -175,18 +203,20 @@ const Home = () => {
     */
 
 
-    const handleSaveTask = async (newTaskName) => {
+
+
+    /*
+    const handleSaveTask = async (updatedTask) => {
+        console.log("INFORMACION ACTUALIZAR", updatedTask);
         // Validar que el nombre de la tarea no esté vacío
-        if (!newTaskName.trim()) {
+        if (!updatedTask.taskname.trim()) {
             console.error("El nombre de la tarea no puede estar vacío.");
             return; // Salir de la función si el nombre de la tarea está vacío
         }
 
-        const updatedTask = {
-            ...selectedTask,
-            taskname: newTaskName
-        };
+        //console.log("Datos de la tarea a actualizar:", updatedTask); // Agregar esto para depurar
 
+        // ESTA PARTE DEL CODIGO ESTA EN COMENTARIOS
         try {
             const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${selectedTask._id}`, updatedTask, {
                 headers: { 'x-auth-token': token }
@@ -197,7 +227,26 @@ const Home = () => {
         } catch (error) {
             console.error("Error al actualizar la tarea:", error);
         }
+        //-----------------------------------------------------------------------------------------------
+        
+        try {
+            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${updatedTask._id}`, updatedTask, {
+                headers: { 'x-auth-token': token }
+            });
+            setTasks(tasks.map(t => t._id === updatedTask._id ? response.data : t));
+            setSelectedTask(response.data);
+            setShowSuccessMessage(true);
+        } catch (error) {
+            console.error("Error al actualizar la tarea:", error);
+        }
+
     };
+    */
+
+
+
+
+
 
 
     const handleDeleteTask = async () => {
@@ -231,23 +280,25 @@ const Home = () => {
 
                 <div className="ContainerInformation">
                     <h2 style={{ textAlign: 'center' }}>Contenedor de Informacion</h2>
-
-
-                    <Drawer
-                        isOpen={isDrawerOpen}
-                        onClose={toggleDrawer}
-                        selectedTask={selectedTask}
-
-                        onSaveTask={handleSaveTask}
-                        onDeleteTask={handleDeleteTask}
-                        showSuccessMessage={showSuccessMessage}
-                        setShowSuccessMessage={setShowSuccessMessage}
-
-                    />
                     {/* Other content... */}
                     {renderContent()}
 
                 </div>
+
+                <Drawer
+                    isOpen={isDrawerOpen}
+                    onClose={toggleDrawer}
+                    selectedTask={selectedTask}
+
+                    onSaveTaskName={handleSaveTaskName}
+                    onSaveTaskState={handleSaveTaskState}
+
+
+                    onDeleteTask={handleDeleteTask}
+                    showSuccessMessage={showSuccessMessage}
+                    setShowSuccessMessage={setShowSuccessMessage}
+
+                />
 
             </div>
         </div >

@@ -21,6 +21,7 @@ router.get('/:projectId',
     tasksController.listTasks);
 
 // ACTUALIZA LAS TAREA  nombre y estado de la tarea    
+/*
 router.put('/:id',
     auth,
     [
@@ -38,6 +39,27 @@ router.put('/:id',
             .isMongoId(),
     ],
     tasksController.updateTask);
+*/
+router.put('/:id',
+    auth,
+    [
+        check('taskname', 'El nombre de la tarea debe ser una cadena no vacía')
+            .optional()
+            .trim()
+            .isLength({ min: 1 }),
+        check('statusTask', 'El estado de la tarea debe ser un valor booleano')
+            .optional()
+            .isBoolean(),
+        check('state', 'El estado de la tarea debe ser una cadena no vacía')
+            .optional()
+            .trim()
+            .isLength({ min: 1 }),
+        check('projectId', 'El ID del proyecto debe ser un ID válido de MongoDB')
+            .optional()
+            .isMongoId(),
+    ],
+    tasksController.updateTask
+);
 
 // ELIMINA LA TAREA POR ID
 router.delete('/:id',

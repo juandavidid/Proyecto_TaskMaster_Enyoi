@@ -79,23 +79,20 @@ exports.updateTask = async (req, res) => {
         if (project.ownerId.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'No autorizado, usuario actual no es Propietario del Proyecto de esta tarea' });
         }
-        //Constructuring the new task
+        // Constructing the new task
         const newTask = {};
         const { taskname, statusTask, state, projectId } = req.body;
-        if (taskname) {
+
+        if (taskname !== undefined) {
             newTask.taskname = taskname;
         }
-        if (statusTask !== null) {
+        if (statusTask !== undefined) {
             newTask.statusTask = statusTask;
         }
-
-        if (state) {
+        if (state !== undefined) {
             newTask.state = state;
         }
-
-
-
-        if (projectId) {
+        if (projectId !== undefined) {
             // Verificar si el nuevo projectId existe y pertenece al usuario autenticado
             const newProject = await Projects.findOne({ _id: projectId });
             if (!newProject) {
