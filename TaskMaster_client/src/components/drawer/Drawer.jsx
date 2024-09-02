@@ -119,8 +119,6 @@ Drawer.propTypes = {
     setShowSuccessMessage: PropTypes.func.isRequired,
 };
 
-
-
 export default Drawer;
 
 

@@ -12,6 +12,8 @@ const Tasks = () => {
     const [description, setDescription] = useState(''); // Estado para la descripción
     const [priority, setPriority] = useState('Media'); // Estado para la prioridad con un valor por defecto
 
+    const [dueDate, setDueDate] = useState('2024-09-07'); // Estado para la fecha de entrega
+
     useEffect(() => {
         const fetchProjects = async () => {
             try {
@@ -39,10 +41,11 @@ const Tasks = () => {
     const handleCreateTask = async () => {
         try {
             const token = localStorage.getItem('authToken'); // Suponiendo que el token se almacena en localStorage
+            console.log("FECHA DE ENTREGA", dueDate);
 
             const response = await axios.post(
                 'https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks',
-                { taskname, description, priority, projectId: selectedProjectId },
+                { taskname, description, priority, dueDate: new Date(dueDate), projectId: selectedProjectId },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -104,6 +107,18 @@ const Tasks = () => {
                         <option value="Baja">Baja</option>
                     </select>
                 </div>
+
+                <div>
+                    <label>Fecha de Entrega:</label>
+                    <input
+                        type="date"
+                        value={dueDate}
+                        onChange={(e) => setDueDate(e.target.value)}
+                    />
+                </div>
+
+
+
 
                 <div>
                     <label>Seleccionar Proyecto:</label>
