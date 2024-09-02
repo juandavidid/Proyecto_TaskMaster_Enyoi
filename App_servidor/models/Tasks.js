@@ -30,7 +30,8 @@ const TasksSchema = mongoose.Schema({
     },
     dueDate: {  // Nuevo campo para fecha de entrega o vencimiento
         type: Date,
-        required: false  // Puedes cambiar a 'true' si quieres que sea obligatorio
+        required: false, // Puedes cambiar a 'true' si quieres que sea obligatorio
+        default: Date.now()
     },
     projectId: {
         type: mongoose.Schema.Types.ObjectId,
