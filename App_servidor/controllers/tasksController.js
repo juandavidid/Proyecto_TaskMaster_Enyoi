@@ -11,6 +11,8 @@ exports.createTask = async (req, res) => {
     }
 
     try {
+
+        console.log('Datos recibidos:', req.body);
         //Verify if task's project exists
         const { projectId } = req.body;
         const project = await Projects.findOne({ _id: projectId });
