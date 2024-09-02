@@ -3,6 +3,14 @@ import './drawer.css'; // Asegúrate de crear y configurar este archivo CSS
 import PropTypes from 'prop-types';
 
 
+//import moment from 'moment-timezone';
+//import 'moment/locale/es'; // Importa el idioma español
+//import { format, parseISO } from 'date-fns';
+//import { es } from 'date-fns/locale';
+
+
+
+
 const Drawer = ({ isOpen, onClose, selectedTask, onSaveTaskName, onSaveTaskState, onDeleteTask, showSuccessMessage, setShowSuccessMessage }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [newTaskName, setNewTaskName] = useState(selectedTask?.taskname || '');
@@ -27,21 +35,27 @@ const Drawer = ({ isOpen, onClose, selectedTask, onSaveTaskName, onSaveTaskState
         }
     };
 
+    const fechaFormateada = selectedTask?.dueDate
+        ? new Intl.DateTimeFormat('es-ES', {
+            timeZone: 'America/Bogota',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).format(new Date(selectedTask.dueDate))
+        : 'Fecha no disponible';
+
+
 
 
 
     /*
-    const handleSave = () => {
-        const updatedTask = {
-            ...selectedTask,
-            taskname: newTaskName,
-            state: taskStatus, // Guardar el estado seleccionado
-        };
-        onSaveTask(updatedTask);
-        setIsEditing(false);
-        setShowSuccessMessage(true); // Mostrar mensaje de éxito al guardar
-    };
+    const fechaFormateada = selectedTask?.dueDate
+        ? moment.tz(selectedTask.dueDate, 'America/Bogota').format('D [de] MMMM YYYY')
+        : 'Fecha no disponible';
     */
+
+
+
 
     return (
         <div className={`drawer ${isOpen ? 'open' : ''}`}>
@@ -70,6 +84,7 @@ const Drawer = ({ isOpen, onClose, selectedTask, onSaveTaskName, onSaveTaskState
                         <p><strong>Proyecto:</strong> {selectedTask.projectName}</p>
                         <p><strong>Prioridad:</strong> {selectedTask.priority}</p>
                         <p><strong>Descripción:</strong> {selectedTask.description}</p>
+                        <p><strong>Fecha de Entrega:</strong> {fechaFormateada}</p>
 
                         <label>
                             Estado:
@@ -110,6 +125,9 @@ Drawer.propTypes = {
         priority: PropTypes.string,
         description: PropTypes.string,
         state: PropTypes.string, // Nuevo campo para el estado de la tarea
+        dueDate: PropTypes.string,
+        createDate: PropTypes.string
+
     }),
     onSaveTaskName: PropTypes.func.isRequired,
     onSaveTaskState: PropTypes.func.isRequired,
