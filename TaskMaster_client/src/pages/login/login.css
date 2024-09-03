@@ -1,0 +1,43 @@
+.containerlogin {
+    margin: 100px 10px 10px 10px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.textloginEmail {
+    margin-left: 55px;
+    width: 330px;
+    height: 30px;
+}
+
+.textloginpassword {
+    margin-left: 55px;
+    width: 332px;
+    height: 30px;
+}
+
+.btnlogin {
+    margin: 25px 0px 0px 55px;
+    width: 340px;
+    height: 35px;
+    color: aliceblue;
+    background-color: #0d0e10;
+}
+
+.textSpan {
+    margin-top: 10px;
+    color: #9c9090;
+
+}
+
+.textSpanRegister {
+    margin-top: 10px;
+    color: #9c9090;
+}
+
+span {
+    text-decoration: none;
+}

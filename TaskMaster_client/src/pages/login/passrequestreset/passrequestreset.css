@@ -1,0 +1,52 @@
+.containerPassreques {
+    margin: 100px 10px 10px 10px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textH2 {
+    color: #6d6e6f;
+}
+
+.containerElement {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+    height: 190px;
+
+
+}
+
+.textLabel {
+    margin-top: 10px;
+    color: #888a8b;
+}
+
+.fielEmail {
+    margin-top: 13px;
+    height: 35px;
+    border-radius: 6px;
+}
+
+.btnEnviar {
+    margin-top: 50px;
+    height: 35px;
+    background-color: #4573d2;
+    border-radius: 6px;
+}
+
+.containeLink {
+    display: flex;
+    gap: 40px;
+
+}
+
+.textRegis {
+    color: #6d6e6f;
+}
+
+.textIniciSe {
+    color: #6d6e6f;
+}

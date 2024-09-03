@@ -1,9 +1,12 @@
 import './register.css'
 import { useState } from 'react';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     // ESTADOS PARA LOS CAMPOS DEL FORMULARIO
 
@@ -12,6 +15,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+
+
 
 
     const handleClick = async (e) => {
@@ -30,6 +35,7 @@ const Register = () => {
 
             //HACER LA SOLICITUD REGISTRO  METODO POST 
             const response = await axios.post('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users', userData);
+
             setSuccessMessage('Registro exitoso!'); // Mensaje de éxito
             setError(''); // Limpiar errores
 
@@ -38,6 +44,13 @@ const Register = () => {
             setNameuser('');
             setEmail('');
             setPassword('');
+
+            // Redirigir a la página de inicio
+            // Esperar 3 segundos (3000 ms) antes de redirigir
+            setTimeout(() => {
+                navigate('/login'); // Cambia '/login' por la ruta de tu página de inicio
+            }, 3000); // 3000 ms = 3 segundos
+
 
 
 
@@ -56,19 +69,34 @@ const Register = () => {
 
 
     return (
-        <div>
-            <h1>FORMULARIO DE  REGISTRO</h1>
+        <div className="containerMain">
+            <h1>Registrate</h1>
             <form>
+                <div className="line">
+                    <div className="lineleft">
+                        <hr />
+                    </div>
+                    <p>O</p>
+                    <div className="linerigth">
+                        <hr />
+                    </div>
+
+                </div>
+
+
 
                 {/*CAMPO DE USERNAME */}
                 <div>
-                    <label htmlFor="nameuser">Nombre:</label>
+                    {/**  <label htmlFor="nameuser">Nombre:</label>*/}
+
                     <input
+                        className="textName"
                         type="text"
                         id="nameuser"
                         value={nameuser}
                         onChange={(e) => setNameuser(e.target.value)}
                         required
+                        placeholder='Nombre'
                     />
                 </div>
 
@@ -76,31 +104,45 @@ const Register = () => {
                 {/*CAMPO DE EMAIL */}
 
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    {/**  <label htmlFor="email">Email:</label>*/}
+
                     <input
+                        className="textEmail"
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        placeholder='Email@gmail.com'
                     />
                 </div>
 
                 {/*CAMPO DE PASSWORS */}
                 <div>
-                    <label htmlFor="password">Contraseña:</label>
+                    {/*<label htmlFor="password">Contraseña:</label> */}
+
                     <input
+                        className="textPassword"
                         type="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        placeholder='Password'
                     />
                 </div>
 
 
                 {/*BOTON DE REGISTRO */}
-                <button type="submit" onClick={handleClick}>Registrar</button>
+                <button className="btRegister" type="submit" onClick={handleClick}>Registrar</button>
+                <div className="clauseText">
+                    <p>
+                        Al registrarmer, acepto la <span>Politica de privacidad</span> y
+                        los <span>terminos de servicio</span>.
+                    </p>
+
+                </div>
+
 
             </form>
 

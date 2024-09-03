@@ -72,48 +72,67 @@ const Login = () => {
 
 
     return (
-        <div>
-            <h1>FORMULARIO DE LOGIN</h1>
+        <div className="containerlogin">
+            <h1> Para comenzar, Inicia sesion</h1>
             <form>
                 {/*CAMPO DE EMAIL */}
 
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    {/*<label htmlFor="email">Email:</label> */}
+
                     <input
+                        className="textloginEmail"
                         type="email"
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        placeholder='Email@gmail.com'
                     />
                 </div>
 
                 {/*CAMPO DE PASSWORS */}
                 <div>
-                    <label htmlFor="password">Contraseña:</label>
+                    {/*<label htmlFor="password">Contraseña:</label>*/}
+
                     <input
+                        className="textloginpassword"
                         type="password"
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        placeholder='password'
                     />
                 </div>
 
                 {/*BOTON DE REGISTRO */}
-                <button type="submit" onClick={handleClick}>Login</button>
+                <button className="btnlogin" type="submit" onClick={handleClick}>Login</button>
 
 
             </form>
 
-            <Link to={"/Passrequestreset"}>
-                <span> ¿Olvide Mi Contraseña? </span>
+
+            <Link to={"/Passrequestreset"} style={{ textDecoration: 'none' }}>
+                <div className="textSpan">
+                    <span > ¿Olvide Mi Contraseña? </span>
+
+                </div>
+
             </Link>
 
-            <Link to={"/register"}>
-                <span> Registrar usuario </span>
+            <Link to={"/register"} style={{ textDecoration: 'none' }}>
+                <div className="textSpanRegister">
+                    <span > Registrar usuario </span>
+
+                </div>
+
 
             </Link>
+
+
+
+
 
 
 

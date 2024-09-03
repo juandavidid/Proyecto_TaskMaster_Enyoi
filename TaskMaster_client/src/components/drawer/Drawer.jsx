@@ -9,8 +9,6 @@ import PropTypes from 'prop-types';
 //import { es } from 'date-fns/locale';
 
 
-
-
 const Drawer = ({ isOpen, onClose, selectedTask, onSaveTaskName, onSaveTaskState, onDeleteTask, showSuccessMessage, setShowSuccessMessage }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [newTaskName, setNewTaskName] = useState(selectedTask?.taskname || '');

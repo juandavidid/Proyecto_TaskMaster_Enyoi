@@ -2,6 +2,8 @@ import './passrequestreset.css'
 import axios from 'axios';
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Passrequestreset = () => {
     const [email, setEmail] = useState('');
     const handleClick = async (e) => {
@@ -17,22 +19,52 @@ const Passrequestreset = () => {
 
     }
     return (
-        <div>
+        <div className="containerPassreques">
             <h1>
-                PAGINA PARA GESTIONAR O SOLICITAR RESTABLECER CONTRASEÑA
+                ¿Olvidaste tu contraseña?
             </h1>
+            <h2 className="textH2">
+                Completa tu direccion de email para recibir instrucciones
+            </h2>
+
 
             <form>
-                <h2>Recuperar Contraseña</h2>
-                <input
-                    type="email"
-                    placeholder="Ingresa tu correo"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <button type="submit" onClick={handleClick}>Enviar</button>
+
+                <div className="containerElement">
+                    <label className="textLabel">Direccion de Email</label>
+                    <input
+                        className="fielEmail"
+                        type="email"
+                        placeholder="Ingresa tu correo"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <button className="btnEnviar" type="submit" onClick={handleClick}>Enviar las instrucciones</button>
+
+                </div>
+
             </form>
+
+            <div className="containeLink">
+                <Link to={"/login"} style={{ textDecoration: 'none' }}>
+                    <div className="textIniciSe">
+                        <span > Iniciar Sesion </span>
+                    </div>
+
+                </Link>
+
+                <Link to={"/register"} style={{ textDecoration: 'none' }}>
+                    <div className="textRegis">
+                        <span > Registrate </span>
+                    </div>
+
+                </Link>
+
+
+            </div>
+
+
         </div>
     )
 }
