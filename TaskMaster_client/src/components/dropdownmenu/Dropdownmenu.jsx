@@ -1,11 +1,23 @@
 import './dropdownmenu.css'
+import { useNavigate } from 'react-router-dom';
 
 //Importan Contexto de React
 import { useAuthContext } from '../../context/AuthContext';
 
-import { Link } from 'react-router-dom';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faSliders } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Dropdownmenu = () => {
+
+    const navigate = useNavigate();
+
+    const handleItemClick = (path) => {
+        navigate(path);
+    };
 
     //CERRAR SESION
     const { logout } = useAuthContext();
@@ -21,13 +33,14 @@ const Dropdownmenu = () => {
     };
     return (
         <div className="menu">
-            <ul>
-                <Link to="/profile">
-                    <li><span >Configuracion de la cuenta</span></li>
-                </Link>
-
-                <li><span onClick={handleLogout} >Cerrar Sesion</span></li>
-
+            <ul className="iconologoUsuario">
+                <li  ><span ><FontAwesomeIcon icon={faSliders} className="iconUser" />Consola del administrador</span></li>
+                <li  ><FontAwesomeIcon icon={faPlus} className="iconUser" /><span >Nuevo espacion de trabajo</span></li>
+                <hr />
+                <li onClick={() => handleItemClick('/profile')} ><FontAwesomeIcon icon={faUser} className="iconUser" /><span >Perfil</span></li>
+                <li  ><FontAwesomeIcon icon={faPlus} className="iconUser" /><span >Agregar otra cuenta</span></li>
+                <hr />
+                <li onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} className="iconUser" /><span  >Cerrar Sesion</span></li>
             </ul>
 
         </div>

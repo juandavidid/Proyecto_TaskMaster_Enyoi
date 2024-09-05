@@ -1,10 +1,32 @@
 .menu {
-    margin: 30px 10px 0 0;
-    height: 70px;
-    background-color: bisque;
+    margin: 40px 10px 0 0;
+    width: 300px;
+    height: 250px;
+    background-color: #1e1f21;
     position: absolute;
     display: flex;
     top: 40px;
     right: 3px;
+    border: 1px solid rgb(190, 187, 187);
+    border-radius: 10px;
 
+}
+
+
+.iconologoUsuario {
+    list-style-type: none;
+    /* Quita los puntos de la lista */
+    text-decoration: none;
+    color: #dedddc;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+
+li .iconUser {
+    margin-right: 8px;
+    color: #979598;
+}
+
+hr {
+    width: 280px;
 }

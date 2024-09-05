@@ -1,6 +1,10 @@
 import './navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
 
 //Importar Componentes
 import Dropdownmenu from '../dropdownmenu/Dropdownmenu';
@@ -27,14 +31,31 @@ const Navbar = ({ showSecurity }) => {
 
     return (
         <div className="navIcon">
+            <div className="containerIconoMenu">
+                <FontAwesomeIcon className="iconMenu" icon={faBars} />
+                <div className="ContainerCreate">
 
-            <div className="ContainerCreate">
-                <span onClick={HandleClickTaskProj} >Crear</span>
+                    <div className="iconoMas">
+                        <FontAwesomeIcon icon={faPlus} />
+                    </div>
+                    <span className="wordCreate" onClick={HandleClickTaskProj} >Crear</span>
+                </div>
+                {isOpenTaskProj && (<TaskProjMenu />)}
+
             </div>
-            {isOpenTaskProj && (<TaskProjMenu />)}
 
-            {/*ICONO DE USUARIO */}
-            <FontAwesomeIcon className="iconUser" onClick={HandleClick} icon={faUser} />
+            <div className="iconologoflecha">
+                {/*ICONO DE USUARIO */}
+                <div className="iconoUsuario" onClick={HandleClick} >
+                    <FontAwesomeIcon className="iconUser" onClick={HandleClick} icon={faUser} />
+                </div>
+                <FontAwesomeIcon icon={faChevronDown} className="iconflechabajo" onClick={HandleClick} />
+
+            </div>
+
+
+
+
 
             {isOpen && (
                 <Dropdownmenu />

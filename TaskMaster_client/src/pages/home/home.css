@@ -9,17 +9,21 @@
 
 
 .listElements {
-    width: 200px;
-    height: 500px;
-    background-color: beige;
+    width: 240px;
+    height: 100vh;
+    background-color: #2e2e30;
     display: flex;
     flex-direction: column;
+    margin-top: 0px;
+    margin-right: 0px;
+    border-right: 1px solid #a1a1a0;
+
 }
 
 .ContainerInformation {
     width: 100vw;
     height: 100vh;
-    background-color: aquamarine;
+    background-color: #1e1f21;
 }
 
 .TaskDetailPanel input {
@@ -59,4 +63,118 @@
 
 .successMessage button:hover {
     background-color: #0b2e13;
+}
+
+.iconSpacing {
+    margin-right: 8px;
+    /* Ajusta el espacio según tus necesidades */
+    margin-left: 8px;
+    color: #777578
+}
+
+.lineicono {
+    margin-top: 25px;
+    color: #a1a1a0;
+
+    border: 0.2px solid;
+
+}
+
+.lineSecundaria {
+    margin-top: 50px;
+    color: #a1a1a0;
+    border: 0.2px solid;
+}
+
+.iconTopSeccionUno {
+    margin-top: 10px;
+    /* Puedes ajustar este valor según tus necesidades */
+}
+
+.iconTopSeccionDos {
+    margin-top: 10px;
+}
+
+.iconTopSeccionTres {
+    margin-top: 10px;
+
+}
+
+.btnInvitar {
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 200px;
+    height: 25px;
+    background-color: #2e2e30;
+    border: 1px solid #565557;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 5px;
+    color: #e0dfde
+}
+
+.textColorInicio {
+    color: #e0dfde
+}
+
+
+/*-----------------Estilo de la tabla------------*/
+
+.taskTableContainer {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.taskTable {
+    width: 98%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.taskTable th,
+.taskTable td {
+    padding: 10px;
+    border: 0.1px solid #8d8d8d;
+    text-align: left;
+}
+
+.taskTable th {
+    background-color: #1e1f21;
+}
+
+.taskTable tr:hover {
+    background-color: #494949;
+    cursor: pointer;
+}
+
+.taskTable tr td {
+    padding: 10px;
+}
+
+.task-name {
+    color: #7e8081;
+    /* Cambia esto por el color que prefieras */
+    font-weight: bold;
+    /* Opcional, si quieres que el texto esté en negrita */
+}
+
+.task-columna {
+    color: #f5f4ec;
+}
+
+
+/*--Seleccionar---*/
+
+.selecProjec {
+    margin-left: 45px;
+    margin-bottom: 100px;
+}
+
+.textH3 {
+    margin-left: 45px;
+    color: #f5f4ec
+}
+
+.textTarea {
+    text-align: center;
 }

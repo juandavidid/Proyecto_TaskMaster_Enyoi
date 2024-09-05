@@ -3,7 +3,13 @@ import Navbar from '../../components/navbar/Navbar';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Drawer from '../../components/drawer/Drawer';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons'; // Importa el ícono
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'; // Importa el ícono
+import { faBell } from '@fortawesome/free-regular-svg-icons'; // Importa el ícono
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faFolder } from '@fortawesome/free-regular-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 
 const Home = () => {
@@ -113,8 +119,6 @@ const Home = () => {
 
 
 
-
-
     const renderContent = () => {
         switch (view) {
             case 'inicio':
@@ -123,9 +127,10 @@ const Home = () => {
             case 'tareas':
                 return (
                     <div>
-
-                        <h3>Selecciona un proyecto para ver sus tareas:</h3>
+                        <h3 className="textTarea" style={{ color: '#f5f4ec' }}>Mis Tareas</h3>
+                        <h3 className="textH3">Selecciona un proyecto para ver sus tareas:</h3>
                         <select
+                            className="selecProjec"
                             value={selectedProjectId}
                             onChange={(e) => setSelectedProjectId(e.target.value)}
                         >
@@ -138,11 +143,41 @@ const Home = () => {
                         </select>
 
 
+                        {selectedProjectId && tasks.length > 0 && (
+                            <div className="taskTableContainer">
+
+                                <table className="taskTable">
+                                    <thead>
+                                        <tr>
+                                            <th className="task-columna">Nombre de la Tarea</th>
+                                            <th className="task-columna">Fecha de Entrega</th>
+                                            <th className="task-columna">Proyecto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {tasks.map(task => (
+                                            <tr key={task._id} onClick={() => {
+                                                setSelectedTask({
+                                                    ...task,
+                                                    projectName: projects.find(p => p._id === task.projectId)?.projname || 'Sin proyecto',
+                                                });
+                                                toggleDrawer();
+                                            }}>
+                                                <td className="task-name">{task.taskname}</td>
+                                                <td className="task-name">{new Date(task.createDate).toLocaleDateString()}</td>
+                                                <td className="task-name">{projects.find(p => p._id === task.projectId)?.projname || 'Sin proyecto'}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
 
 
-                        {selectedProjectId && (
+                        {/*
+                         {selectedProjectId && (
                             <div>
-                                {console.log('ID del Proyecto seleccionado antes de renderizar tareas:', selectedProjectId)} {/* Verificar el ID */}
+                                
                                 <h3>Tareas del Proyecto</h3>
                                 <ul>
                                     {console.log("Informacion de ", tasks)}
@@ -154,7 +189,7 @@ const Home = () => {
                                                 projectName: projects.find(p => p._id === task.projectId)?.projname || 'Sin proyecto',
                                                 priority: task.priority || 'No especificada',
                                                 description: task.description || 'Sin descripción',
-                                                state: task.state || 'Sin estado' // Agregar el campo state aquí
+                                                state: task.state || 'Sin estado' 
                                             }
                                             ); toggleDrawer()
                                         }}>{task.taskname}</li>
@@ -162,6 +197,14 @@ const Home = () => {
                                 </ul>
                             </div>
                         )}
+                        
+                        
+                        
+                        */}
+
+
+
+
 
                     </div>
                 );
@@ -266,20 +309,40 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <h1>PAGINA PRINCIPAL DEL GESTOR DE TAREAS</h1>
+            {/*<h1>PAGINA PRINCIPAL DEL GESTOR DE TAREAS</h1> */}
+
 
             <div className="ContainerPrincipal">
 
 
                 <div className="listElements">
-                    <h2 >Contenedor de elementos</h2>
-                    <span onClick={() => setView('inicio')}>Inicio</span>
-                    <span onClick={() => setView('tareas')}>Tareas</span>
-                    <span onClick={() => setView('proyectos')}>Proyectos</span>
+                    <span onClick={() => setView('inicio')} className="textColorInicio"><FontAwesomeIcon icon={faHouse} className="iconSpacing iconTopSeccionUno" />Inicio</span>
+                    <span onClick={() => setView('tareas')} className="textColorInicio"><FontAwesomeIcon icon={faCircleCheck} className="iconSpacing iconTopSeccionUno" />Mis Tareas</span>
+                    <span className="textColorInicio"><FontAwesomeIcon icon={faBell} className="iconSpacing iconTopSeccionUno" />Bandeja de entrada</span>
+
+                    <hr className="lineicono" />
+
+
+                    <h3 className="iconSpacing textColorInicio">Analisis  de datos</h3>
+                    <span className="textColorInicio" > <FontAwesomeIcon icon={faChartLine} className="iconSpacing iconTopSeccionDos" />informes</span>
+                    <span className="textColorInicio"> <FontAwesomeIcon icon={faFolder} className="iconSpacing iconTopSeccionDos" />Portafolios</span>
+
+
+
+                    <span onClick={() => setView('proyectos')} className="iconSpacing textColorInicio"><h3>Proyectos</h3></span>
+                    <h3 className="iconSpacing textColorInicio">Equipo</h3>
+                    <span className="textColorInicio"><FontAwesomeIcon icon={faUsers} className="iconSpacing iconTopSeccionTres" />Mi espacio de trabajo</span>
+                    <hr className="lineSecundaria" />
+
+
+                    <div className="btnInvitar">
+                        Inivitar
+                    </div>
+
                 </div>
 
                 <div className="ContainerInformation">
-                    <h2 style={{ textAlign: 'center' }}>Contenedor de Informacion</h2>
+
                     {/* Other content... */}
                     {renderContent()}
 

@@ -86,7 +86,7 @@ const Register = () => {
 
 
                 {/*CAMPO DE USERNAME */}
-                <div>
+                <div className="campoRegister">
                     {/**  <label htmlFor="nameuser">Nombre:</label>*/}
 
                     <input
@@ -103,7 +103,7 @@ const Register = () => {
 
                 {/*CAMPO DE EMAIL */}
 
-                <div>
+                <div className="campoRegister">
                     {/**  <label htmlFor="email">Email:</label>*/}
 
                     <input
@@ -118,7 +118,7 @@ const Register = () => {
                 </div>
 
                 {/*CAMPO DE PASSWORS */}
-                <div>
+                <div className="campoRegister">
                     {/*<label htmlFor="password">Contraseña:</label> */}
 
                     <input

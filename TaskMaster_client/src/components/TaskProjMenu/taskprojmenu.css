@@ -1,11 +1,36 @@
 .menutaskProj {
 
-    width: 100px;
-    height: 70px;
-    background-color: bisque;
+    width: 150px;
+    height: 150px;
+    background-color: #1e1f21;
     position: absolute;
     display: flex;
-    top: 16px;
-    left: 120px;
+    top: 23px;
+    left: 260px;
+    border: 1px solid rgb(190, 187, 187);
+    border-radius: 10px;
 
+
+}
+
+.menuTaskProject {
+    list-style-type: none;
+    /* Quita los puntos de la lista */
+    text-decoration: none;
+    color: #dedddc;
+    padding-left: 15px;
+    padding-bottom: 5px;
+
+}
+
+li {
+
+
+    margin-bottom: 15px;
+
+}
+
+li .icon {
+    margin-right: 8px;
+    color: #979598;
 }

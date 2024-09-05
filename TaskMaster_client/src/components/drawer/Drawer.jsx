@@ -53,8 +53,6 @@ const Drawer = ({ isOpen, onClose, selectedTask, onSaveTaskName, onSaveTaskState
     */
 
 
-
-
     return (
         <div className={`drawer ${isOpen ? 'open' : ''}`}>
             <button onClick={onClose}>Cerrar</button>

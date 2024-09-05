@@ -1,18 +1,77 @@
 .navIcon {
 
-    height: 50px;
-    background-color: grey;
+    height: 80px;
+    background-color: #2e2e30;
     display: flex;
     justify-content: space-between;
+    border: 1px solid #a1a1a0;
 }
 
 .iconUser {
-    margin: 5px 5px 0px 0px;
+    margin: 5px 5px 3px 5px;
+    color: #2e2e30;
 }
 
 .ContainerCreate {
-    width: 50px;
-    height: 30px;
-    background-color: aliceblue;
+    width: 115px;
+    height: 40px;
+    border: 1px solid white;
+    background-color: #3d3e40;
     margin: 10px 0 10px 60px;
+    display: flex;
+    border-radius: 40px;
+}
+
+.wordCreate {
+    margin-top: 9px;
+    color: white
+}
+
+.iconoMas {
+    margin: 7px 10px 15px 15px;
+    border-radius: 25px;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff584a;
+    color: aliceblue;
+
+}
+
+.containerIconoMenu {
+    display: flex;
+}
+
+.iconMenu {
+    font-size: 25px;
+    margin-left: 50px;
+    margin-top: 15px;
+    color: white;
+
+}
+
+.iconoUsuario {
+    margin: 15px 10px 15px 15px;
+    border-radius: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fc979a;
+    color: aliceblue;
+
+}
+
+.iconologoflecha {
+    display: flex;
+}
+
+.iconflechabajo {
+    margin-top: 25px;
+    margin-right: 5px;
 }
