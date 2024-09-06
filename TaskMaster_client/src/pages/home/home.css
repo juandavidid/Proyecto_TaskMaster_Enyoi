@@ -134,7 +134,7 @@
 .taskTable th,
 .taskTable td {
     padding: 10px;
-    border: 0.1px solid #8d8d8d;
+    border: 3px solid #8d8d8d;
     text-align: left;
 }
 
@@ -172,9 +172,74 @@
 
 .textH3 {
     margin-left: 45px;
-    color: #f5f4ec
+    color: #f5f4ec;
+    font-size: 1.5em;
 }
 
-.textTarea {
+.textTask {
     text-align: center;
+    font-size: 2.5em;
+
+}
+
+
+/*--ESTILO DE LA OPCION DE INICIO*/
+.home-container {
+    padding: 20px;
+    color: #f5f4f3;
+    background-color: #323234;
+    min-height: 100vh;
+}
+
+.home-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.home-header h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.home-header h3 {
+    font-size: 1.5em;
+    color: #f5f4f3;
+    ;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+.iconoInicio {
+    font-size: 2em;
+    color: #4CAF50;
+    /* Color verde de ejemplo, puedes cambiarlo */
+    margin-bottom: 10px;
+}
+
+.grid-item h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: black
+}
+
+.grid-item p {
+    font-size: 0.9em;
+    color: #777;
 }

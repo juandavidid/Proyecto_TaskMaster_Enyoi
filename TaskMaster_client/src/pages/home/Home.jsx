@@ -42,9 +42,37 @@ const Home = () => {
 
     // Simulación de obtener el nombre de usuario
     useEffect(() => {
-        // Aquí deberías obtener el nombre de usuario desde el backend
-        setUserName('Nombre de Usuario');
-    }, []);
+
+        // Hacer petición al backend para obtener la información del usuario
+        const fetchUserName = async () => {
+            try {
+                const response = await axios.get(
+                    'https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/Information',
+                    {
+                        headers: { 'x-auth-token': token },
+                    }
+                );
+
+                console.log("INFORMACION DE LA DATA", response);
+
+
+                // Asignar el nombre de usuario desde la respuesta
+                setUserName(response.data.user.nameuser); // Asegúrate de que `userName` es el campo correcto en la respuesta
+            } catch (error) {
+                console.error('Error al obtener el nombre de usuario', error);
+            }
+        };
+
+        // Llamar a la función para obtener el nombre del usuario
+        fetchUserName();
+    }, [token]); //
+
+
+
+
+
+
+
 
     // Cargar proyectos cuando se selecciona la vista de proyectos
     useEffect(() => {
@@ -116,18 +144,64 @@ const Home = () => {
     };
 
 
-
+    console.log("Dato del Nombre", userName);
 
 
     const renderContent = () => {
         switch (view) {
             case 'inicio':
-                return <h3>Hola, {userName}</h3>;
+                return (
+                    <div className="home-container">
+                        <div className="home-header">
+                            <h2>Inicio</h2>
+                            <h3>Hola, {userName}</h3>
+                        </div>
+
+                        <div className="home-grid">
+                            <div className="grid-item">
+                                <FontAwesomeIcon icon={faHouse} className="iconoInicio" />
+                                <h4>Panel de Control</h4>
+                                <p>Accede a la configuración general de tu panel.</p>
+                            </div>
+                            <div className="grid-item">
+                                <FontAwesomeIcon icon={faCircleCheck} className="iconoInicio" />
+                                <h4>Tareas Completadas</h4>
+                                <p>Revisa las tareas que has completado exitosamente.</p>
+                            </div>
+                            <div className="grid-item">
+                                <FontAwesomeIcon icon={faBell} className="iconoInicio" />
+                                <h4>Notificaciones</h4>
+                                <p>Mantente al tanto de las últimas actualizaciones.</p>
+                            </div>
+                            <div className="grid-item">
+                                <FontAwesomeIcon icon={faChartLine} className="iconoInicio" />
+                                <h4>Estadísticas</h4>
+                                <p>Consulta tu progreso y rendimiento en los proyectos.</p>
+                            </div>
+                            <div className="grid-item">
+                                <FontAwesomeIcon icon={faFolder} className="iconoInicio" />
+                                <h4>Proyectos</h4>
+                                <p>Gestiona tus proyectos activos y archivados.</p>
+                            </div>
+                            <div className="grid-item">
+                                <FontAwesomeIcon icon={faUsers} className="iconoInicio" />
+                                <h4>Equipos</h4>
+                                <p>Colabora con tu equipo en diferentes proyectos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                )
+
+
+
 
             case 'tareas':
                 return (
                     <div>
-                        <h3 className="textTarea" style={{ color: '#f5f4ec' }}>Mis Tareas</h3>
+                        <h3 className="textTask" style={{ color: '#f5f4ec' }}>Mis Tareas</h3>
                         <h3 className="textH3">Selecciona un proyecto para ver sus tareas:</h3>
                         <select
                             className="selecProjec"
@@ -231,7 +305,7 @@ const Home = () => {
             ...selectedTask,
             taskname: newTaskName
         };
-
+     
         try {
             const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${selectedTask._id}`, updatedTask, {
                 headers: { 'x-auth-token': token }
@@ -256,9 +330,9 @@ const Home = () => {
             console.error("El nombre de la tarea no puede estar vacío.");
             return; // Salir de la función si el nombre de la tarea está vacío
         }
-
+     
         //console.log("Datos de la tarea a actualizar:", updatedTask); // Agregar esto para depurar
-
+     
         // ESTA PARTE DEL CODIGO ESTA EN COMENTARIOS
         try {
             const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${selectedTask._id}`, updatedTask, {
@@ -282,7 +356,7 @@ const Home = () => {
         } catch (error) {
             console.error("Error al actualizar la tarea:", error);
         }
-
+     
     };
     */
 

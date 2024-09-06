@@ -1,11 +1,11 @@
 .drawer {
     position: fixed;
     top: 0;
-    right: -300px;
+    right: -400px;
     /* Mueve el drawer fuera de la pantalla */
-    width: 300px;
+    width: 400px;
     height: 100%;
-    background-color: white;
+    background-color: #1e1f21;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease;
 }
@@ -32,11 +32,124 @@
 }
 
 
-.drawer .task-details {
-    margin-top: 15px;
-}
+
 
 .drawer .task-details p {
-    margin: 5px 0;
+    margin: 20px 0;
     font-size: 14px;
+}
+
+.view-container {
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+
+.drawer .task-details {
+    margin-top: 60px;
+    margin-left: 10px;
+
+
+}
+
+.btnEliminar {
+    margin-top: 60px;
+
+    text-align: center;
+
+
+}
+
+.btnElim {
+    border: 1px solid;
+    color: #d8d7d7;
+    background-color: transparent;
+    border-radius: 4px;
+    width: 100px;
+    height: 30px;
+
+}
+
+.btnClosed {
+    margin-top: 5px;
+    margin-left: 350px;
+    background-color: transparent;
+    border: none;
+    border: 1px solid;
+    color: #a2a0a2;
+}
+
+
+
+.textdetails {
+    margin-right: 70px;
+    color: #d8d7d7;
+    font-size: 15px
+}
+
+.textdetailsProjecto {
+    margin-right: 120px;
+    color: #d8d7d7;
+    font-size: 15px
+}
+
+.textdetailsPrioridad {
+    margin-right: 115px;
+    color: #d8d7d7;
+    font-size: 15px
+}
+
+.textdetailsEstado {
+    margin-right: 135px;
+    color: #d8d7d7;
+    font-size: 15px
+}
+
+.selectEstado {
+    background-color: transparent;
+    /* Fondo transparente */
+
+    border: none;
+    /* Sin bordes */
+
+    outline: none;
+    /* Quitar el borde de selección cuando haces clic */
+    color: #9d9b9d
+}
+
+.optionEstado {
+    background-color: #1e1f21;
+    color: #9d9b9d;
+}
+
+.nameTask {
+    color: #f5f4f3;
+    font-size: 30px
+}
+
+.textDescripcion {
+    color: #f5f4f3;
+    font-size: 15px
+}
+
+.variable {
+    color: #9d9b9d
+}
+
+.parrafo {
+    color: #9d9b9d;
+    border: 1px solid;
+    margin-right: 10px;
+    width: 370px;
+    height: 70px;
+}
+
+.lineDetalles {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.lineDetallesDos {
+    width: 100%;
+    margin-top: 30px;
 }
