@@ -152,12 +152,15 @@ const Profile = () => {
     return (
         <div className="container">
             {/* Pasando showSecurity como true para mostrar "Seguridad" */}
-            <Navbar showSecurity={true} />
-            <h1>PAGINA Administrar tu informacion personal</h1>
-            <h2>Foto de Perfil e Imagen de Encabezado</h2>
+            <Navbar className="cabecera" showSecurity={true} />
+
+
+
+            <h2 className="tituloPerfil">Foto de Perfil</h2>
+
 
             <div className="containerProfilePhoto">
-                <h2> Mostra contenido</h2>
+
                 <h1> Foto de perfil Usuario  </h1>
                 {userData?.user.profilePhoto ? (
                     <img
@@ -171,11 +174,11 @@ const Profile = () => {
             </div>
 
 
-            <h2>Acerta de ti</h2>
+            <h2 className="tituloPerfil">Acerta de ti</h2>
 
 
             <div className="containerProfilePhoto">
-                <h2> Mostra contenido</h2>
+
                 {/* <p>  Nombre : {userData?.user.nameuser || "Información no disponible"} </p>*/}
                 <p>Nombre:
                     {isEditingName ? (

@@ -13,6 +13,9 @@ const Register = () => {
     const [nameuser, setNameuser] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [city, setCity] = useState(''); // Nuevo estado para ciudad
+    const [phone, setPhone] = useState(''); // Nuevo estado para teléfono
+    const [profession, setProfession] = useState(''); // Nuevo estado para profesión
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -28,6 +31,9 @@ const Register = () => {
             nameuser,
             email,
             password,
+            city, // Incluir ciudad
+            phone, // Incluir teléfono
+            profession // Incluir profesión
 
         }
 
@@ -44,6 +50,9 @@ const Register = () => {
             setNameuser('');
             setEmail('');
             setPassword('');
+            setCity('');
+            setPhone('');
+            setProfession('');
 
             // Redirigir a la página de inicio
             // Esperar 3 segundos (3000 ms) antes de redirigir
@@ -72,6 +81,7 @@ const Register = () => {
         <div className="containerMain">
             <h1>Registrate</h1>
             <form>
+
                 <div className="line">
                     <div className="lineleft">
                         <hr />
@@ -131,6 +141,48 @@ const Register = () => {
                         placeholder='Password'
                     />
                 </div>
+                {/* CAMPO DE CIUDAD */}
+                <div className="campoRegister">
+                    <input
+                        className="textCity"
+                        type="text"
+                        id="city"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required
+                        placeholder='Ciudad'
+                    />
+                </div>
+
+                {/* CAMPO DE TELÉFONO */}
+                <div className="campoRegister">
+                    <input
+                        className="textPhone"
+                        type="text"
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                        placeholder='Teléfono'
+                    />
+                </div>
+
+                {/* CAMPO DE PROFESIÓN */}
+                <div className="campoRegister">
+                    <input
+                        className="textProfession"
+                        type="text"
+                        id="profession"
+                        value={profession}
+                        onChange={(e) => setProfession(e.target.value)}
+                        required
+                        placeholder='Profesión'
+                    />
+                </div>
+
+
+
+
 
 
                 {/*BOTON DE REGISTRO */}

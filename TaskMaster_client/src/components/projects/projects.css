@@ -1,0 +1,63 @@
+.containerProject {
+    background-color: #2a2b2d;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.formularioProject {
+    background-color: #3c3d40;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+.TituloProjecto {
+    text-align: center;
+    color: #ffffff;
+}
+
+.nameProjecto {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.cajaTextoProjecto[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btnProjecto[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.mensajeError {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Mejorar la apariencia de la página cuando se reduce el tamaño de la pantalla */
+@media (max-width: 600px) {
+    form {
+        padding: 1rem;
+    }
+}

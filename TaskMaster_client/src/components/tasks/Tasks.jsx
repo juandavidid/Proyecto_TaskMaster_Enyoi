@@ -74,32 +74,41 @@ const Tasks = () => {
     };
 
     return (
-        <div>
-            <h1>  PAGINA CREAR LA TAREA</h1>
-            {successMessage && <p>{successMessage}</p>} {/* Mostrar el mensaje de éxito */}
+        <div className="containerTask">
 
-            <form onSubmit={(e) => { e.preventDefault(); handleCreateTask(); }}>
+            {successMessage && <p className="pTask">{successMessage}</p>} {/* Mostrar el mensaje de éxito */}
+
+            <form className="formTask" onSubmit={(e) => { e.preventDefault(); handleCreateTask(); }}>
+
                 <div>
-                    <label>Nombre de la Tarea:</label>
+
+                    <label className="labelTask">Nombre de la Tarea:</label>
                     <input
+
+                        className="inputTask"
                         type="text"
                         value={taskname}
                         onChange={(e) => setTaskname(e.target.value)}
                     />
+
                 </div>
 
 
                 <div>
-                    <label>Descripción:</label> {/* Nuevo campo para la descripción */}
+
+                    <label className="labelTask">Descripción:</label> {/* Nuevo campo para la descripción */}
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
+
                 </div>
 
                 <div>
-                    <label>Prioridad:</label> {/* Nuevo campo para la prioridad */}
+
+                    <label className="labelTask">Prioridad:</label> {/* Nuevo campo para la prioridad */}
                     <select
+                        className="selecTask"
                         value={priority}
                         onChange={(e) => setPriority(e.target.value)}
                     >
@@ -107,23 +116,29 @@ const Tasks = () => {
                         <option value="Media">Media</option>
                         <option value="Baja">Baja</option>
                     </select>
+
                 </div>
 
                 <div>
-                    <label>Fecha de Entrega:</label>
+
+                    <label className="labelTask">Fecha de Entrega:</label>
                     <input
+                        className="inputTask"
                         type="date"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
                     />
+
                 </div>
 
 
 
 
                 <div>
-                    <label>Seleccionar Proyecto:</label>
+
+                    <label className="labelTask">Seleccionar Proyecto:</label>
                     <select
+                        className="selecTask"
                         value={selectedProjectId}
                         onChange={(e) => setSelectedProjectId(e.target.value)}
                         required
@@ -135,9 +150,10 @@ const Tasks = () => {
                             </option>
                         ))}
                     </select>
+
                 </div>
 
-                <button type="submit">Crear Tarea</button>
+                <button className="buttonTask" type="submit">Crear Tarea</button>
 
             </form>
         </div>

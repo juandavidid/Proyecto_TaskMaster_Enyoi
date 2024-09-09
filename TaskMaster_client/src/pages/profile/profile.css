@@ -1,13 +1,25 @@
 .container {
 
     height: 200vh;
-    background-color: beige;
+    background-color: #2a2b2d;
+    flex-direction: column;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+
 }
 
+
+
 .containerProfilePhoto {
-    width: 850px;
-    height: 500px;
+    width: 600px;
+    height: 310px;
     background-color: aliceblue;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    text-align: center;
+    margin-left: 250px;
 }
 
 .containerProfilePhoto img {
@@ -21,5 +33,75 @@
     /* Esto convierte la imagen en un círculo si lo deseas */
     margin-bottom: 10px;
     /* Añadir espacio debajo de la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+
+}
+
+.tituloPerfil {
+    color: #838383;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Botón para agregar imagen */
+.containerProfilePhoto button {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.containerProfilePhoto button:hover {
+    background-color: #45a049;
+}
+
+/* Nombre editable */
+.containerProfilePhoto p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.containerProfilePhoto span {
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+}
+
+.containerProfilePhoto input[type="text"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+
+.containerProfilePhoto button {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.containerProfilePhoto button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    .containerProfilePhoto {
+        width: 100%;
+    }
+
+    .containerProfilePhoto img {
+        width: 100px;
+        height: 100px;
+    }
 }

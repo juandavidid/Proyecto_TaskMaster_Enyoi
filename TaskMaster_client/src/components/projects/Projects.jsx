@@ -44,23 +44,24 @@ const Projects = () => {
 
 
     return (
-        <div>
-            <h1>PAGINA PARA CREAR PROYECTO</h1>
+        <div className="containerProject">
 
-            <h2>Nuevo proyecto</h2>
 
-            <form onSubmit={onSubmit}>
+            <h1 className="TituloProjecto">Nuevo proyecto</h1>
+
+            <form className="formularioProject" onSubmit={onSubmit}>
                 <div>
-                    <label>Nombre del Proyecto</label>
+                    <label className="nameProjecto">Nombre del Proyecto</label>
                     <input
+                        className="cajaTextoProjecto"
                         type="text"
                         value={projname}
                         onChange={(e) => setProjname(e.target.value)}
                         required
                     />
                 </div>
-                {error && <p>{error}</p>}
-                <button type="submit">Crear Proyecto</button>
+                {error && <p className="mensajeError">{error}</p>}
+                <button className="btnProjecto" type="submit">Crear Proyecto</button>
             </form>
 
         </div>
