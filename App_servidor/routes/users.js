@@ -12,7 +12,10 @@ router.post('/',
     [
         check('nameuser', 'Debe suministrar el nombre').trim().isLength({ min: 1 }),
         check('email', 'Debe suministrar un email válido').trim().isEmail(),
-        check('password', 'Debe suministrar un password de al menos 6 caractere').trim().isLength({ min: 6 })
+        check('password', 'Debe suministrar un password de al menos 6 caractere').trim().isLength({ min: 6 }),
+        check('city', 'Debe suministrar la ciudad').trim().isLength({ min: 1 }),
+        check('phone', 'Debe suministrar un teléfono válido').trim().isLength({ min: 7 }), // Asumiendo que el número de teléfono tiene al menos 7 caracteres
+        check('profession', 'Debe suministrar una profesión').trim().isLength({ min: 1 })
     ],
     usersController.createUser);
 

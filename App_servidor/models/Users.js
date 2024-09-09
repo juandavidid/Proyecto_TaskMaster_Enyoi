@@ -32,7 +32,20 @@ const UserSchema = mongoose.Schema({
     },
     profilePhotoType: {
         type: String, // Campo para almacenar el tipo MIME de la imagen (por ejemplo, 'image/jpeg')
+    },
+    city: {
+        type: String,  // Campo para almacenar la ciudad del usuario
+        trim: true
+    },
+    phone: {
+        type: String,  // Campo para almacenar el teléfono
+        trim: true
+    },
+    profession: {
+        type: String,  // Campo para almacenar la profesión
+        trim: true
     }
+
 });
 
 module.exports = mongoose.model('Users', UserSchema);

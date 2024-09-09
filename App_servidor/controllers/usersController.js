@@ -11,7 +11,7 @@ exports.createUser = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     //Getting the fields
-    const { email, password } = req.body;
+    const { email, password, city, phone, profession } = req.body;
     try {
         //Check email not exists 
         let user = await Users.findOne({ email });
@@ -19,7 +19,14 @@ exports.createUser = async (req, res) => {
             return res.status(400).json({ msg: 'El email ya existe' });
         }
         //Create a new user object
-        user = new Users(req.body);
+        //user = new Users(req.body);
+
+        user = new Users({
+            ...req.body,   // Incluye todos los campos enviados en el body
+            city,          // Añadir ciudad
+            phone,         // Añadir teléfono
+            profession     // Añadir profesión
+        });
 
         //password Hash   encriptan la contraseña
         const salt = await bcryptjs.genSalt(10);
