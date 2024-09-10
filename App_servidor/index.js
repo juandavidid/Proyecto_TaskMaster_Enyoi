@@ -33,7 +33,7 @@ app.use('/api/password', require('./routes/forgotPassword'));
 
 //Specify the main page
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.send('Hello ')
 });
 
 //Start app
