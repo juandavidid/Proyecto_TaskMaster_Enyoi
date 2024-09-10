@@ -12,6 +12,7 @@ const Profile = () => {
     const [loading, setLoading] = useState(true); // Estado de carga
     const [error, setError] = useState(null);
     const [Openphoto, setOpenphoto] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null); // Nuevo estado para manejar la imagen
     //Estudiar parte del codigo 
     const [isEditingName, setIsEditingName] = useState(false);
     const [newName, setNewName] = useState('');
@@ -93,6 +94,44 @@ const Profile = () => {
         return window.btoa(binary);
     };
 
+    //---------------------------------CODIGO NUEVO------------------------------------------------
+
+    // Guarda la Imagen seleccionada
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]); // Guardar la imagen seleccionada
+    };
+
+    const handlePhotoSubmit = async () => {
+        const token = localStorage.getItem('authToken');
+        const config = {
+            headers: {
+                'x-auth-token': `${token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        };
+
+        const formData = new FormData();
+        formData.append('profilePhoto', selectedFile); // Añadir la imagen seleccionada
+
+        try {
+            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/profile/photo/${userData.user._id}`, formData, config);
+            console.log('Foto de perfil actualizada:', response.data);
+            setOpenphoto(false);
+        } catch (error) {
+            console.error('Error al subir la foto de perfil:', error);
+            setError(error);
+        }
+    };
+
+
+    //----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
     //Estudiar parte de este codigo
     const handleNameClick = () => {
         setIsEditingName(true);
@@ -170,7 +209,8 @@ const Profile = () => {
                 ) : (
                     <p>No se ha cargado la imagen de perfil.</p>
                 )}
-                <button onClick={handleClick}>Agregar imagen</button>
+                {/* <button onClick={handleClick}>Agregar imagen</button>*/}
+                <button onClick={handlePhotoSubmit}>Agregar imagen</button>
             </div>
 
 
@@ -180,13 +220,14 @@ const Profile = () => {
             <div className="containerProfilePhoto">
 
                 {/* <p>  Nombre : {userData?.user.nameuser || "Información no disponible"} </p>*/}
+
                 <p>Nombre:
                     {isEditingName ? (
                         <>
                             <input
                                 type="text"
                                 value={newName}
-                                onChange={handleNameChange}
+                                onChange={(e) => setNewName(e.target.value)}/* onChange={handleNameChange}*/
                             />
                             <button onClick={handleNameSubmit}>✔</button>
                         </>
