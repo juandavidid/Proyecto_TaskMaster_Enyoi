@@ -16,9 +16,12 @@ const Profile = () => {
     const [isEditingName, setIsEditingName] = useState(false);
     const [newName, setNewName] = useState('');
     const [newEmail, setNewEmail] = useState('');
+
+    /*
     const [newCity, setNewCity] = useState('');
     const [newPhone, setNewPhone] = useState('');
     const [newProfession, setNewProfession] = useState('');
+    */
 
 
 
