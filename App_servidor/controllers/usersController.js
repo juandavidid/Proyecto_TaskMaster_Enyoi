@@ -123,6 +123,21 @@ exports.uploadProfileImage = async (req, res) => {
             return res.status(400).json({ msg: 'No se ha enviado ninguna imagen' });
         }
 
+        //--------------CODIGO NUEVO--------------
+
+        // Validar tipo de archivo
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+        if (!allowedTypes.includes(file.mimetype)) {
+            return res.status(400).json({ msg: 'Tipo de archivo no permitido. Solo se permiten imágenes.' });
+        }
+
+
+
+        //-----------------------------------------
+
+
+
+
         const user = await Users.findById(userId);
         if (!user) return res.status(404).json({ msg: 'Usuario no encontrado' });
 

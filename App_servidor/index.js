@@ -31,8 +31,6 @@ app.use('/api/tasks', require('./routes/tasks'));
 app.use('/api/password', require('./routes/forgotPassword'));
 
 
-
-
 //Specify the main page
 app.get('/', (req, res) => {
     res.send('Hello World')
