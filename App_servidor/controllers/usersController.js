@@ -83,7 +83,7 @@ exports.getUser = async (req, res) => {
 
 }
 
-exports.updateUserName = async (req, res) => {
+exports.updateUseProfile = async (req, res) => {
     // Verificar errores de validación
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -92,10 +92,10 @@ exports.updateUserName = async (req, res) => {
 
     try {
         const userId = req.user.id;
-        const { nameuser } = req.body;
+        const { nameuser, email, city, phone, profession } = req.body;
 
         // Buscar y actualizar el nombre del usuario
-        const user = await Users.findByIdAndUpdate(userId, { nameuser }, { new: true }).select('-password');
+        const user = await Users.findByIdAndUpdate(userId, { nameuser, email, city, phone, profession }, { new: true }).select('-password');
 
         if (!user) {
             return res.status(404).json({ msg: 'Usuario no encontrado' });
