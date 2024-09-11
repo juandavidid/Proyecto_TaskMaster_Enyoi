@@ -48,7 +48,7 @@ router.post('/forgot-password', async (req, res) => {
 
         await sendEmail({
             email: user.email,
-            subject: 'Restablecimiento de contraseña',
+            subject: 'Restablecimiento Contraseña',
             message
         });
 
