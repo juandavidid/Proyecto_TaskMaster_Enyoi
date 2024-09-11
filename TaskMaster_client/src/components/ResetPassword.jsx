@@ -30,17 +30,21 @@ const ResetPassword = () => {
     return (
         <div className="reset-password-container">
             <form className="reset-password-form">
-                <h2>Restablecer Contraseña</h2>
-                <input
-                    type="password"
-                    placeholder="Ingresa tu nueva contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit" onClick={handleClick} className="submit-button">
-                    Restablecer
-                </button>
+                <div className="containerRestablcer">
+                    <h2>Restablecer Contraseña</h2>
+                    <input
+                        type="password"
+                        placeholder="Ingresa tu nueva contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit" onClick={handleClick} className="submit-button">
+                        Restablecer
+                    </button>
+
+                </div>
+
             </form>
         </div>
     )
