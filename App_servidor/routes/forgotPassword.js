@@ -34,7 +34,7 @@ router.post('/forgot-password', async (req, res) => {
         await user.save();
 
         // Crear la URL de restablecimiento de contraseña
-        const resetUrl = `https://proyecto-task-master-enyoiclient-7x6hszlv7.vercel.app/resetpassword/${resetToken}`;
+        const resetUrl = `https://proyecto-task-master-enyoiclient-9sfvepcjh.vercel.app/resetpassword/${resetToken}`;
 
         console.log("Crea URL ", resetUrl);
 
