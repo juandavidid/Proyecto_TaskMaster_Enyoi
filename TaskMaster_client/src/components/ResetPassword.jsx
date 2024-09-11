@@ -39,7 +39,7 @@ const ResetPassword = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button type="submit" onClick={handleClick} className="submit-button">
+                    <button type="submit" onClick={handleClick} className="botonRegistro">
                         Restablecer
                     </button>
 
