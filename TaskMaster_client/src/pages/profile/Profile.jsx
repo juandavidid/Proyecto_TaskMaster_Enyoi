@@ -14,14 +14,18 @@ const Profile = () => {
     const [Openphoto, setOpenphoto] = useState(false);
     //Estudiar parte del codigo 
     const [isEditingName, setIsEditingName] = useState(false);
+    const [isEditingEmail, setIsEditingEmail] = useState(false);
+    const [isEditingCity, setIsEditingCity] = useState(false);
+    const [isEditingPhone, setIsEditingPhone] = useState(false);
+    const [isEditingProfession, setIsEditingProfession] = useState(false);
+
+
     const [newName, setNewName] = useState('');
     const [newEmail, setNewEmail] = useState('');
-
-    /*
     const [newCity, setNewCity] = useState('');
     const [newPhone, setNewPhone] = useState('');
     const [newProfession, setNewProfession] = useState('');
-    */
+
 
 
 
@@ -122,6 +126,10 @@ const Profile = () => {
 
 
                 setNewName(response.data?.user.nameuser); // Inicializar con el nombre actual
+                setNewEmail(response.data?.user.email);
+                setNewCity(response.data?.user.city);
+                setNewPhone(response.data?.user.phone);
+                setNewProfession(response.data?.user.profession);
 
             } catch (error) {
                 // Manejar errores
@@ -154,6 +162,54 @@ const Profile = () => {
     };
 
     //---------------------------------CODIGO NUEVO------------------------------------------------
+    const handleFieldSubmit = async (field) => {
+        const token = localStorage.getItem('authToken');
+        const config = {
+            headers: {
+                'x-auth-token': `${token}`
+            }
+        };
+
+        try {
+            const updatedData = {
+                nameuser: newName,
+                email: newEmail,
+                city: newCity,
+                phone: newPhone,
+                profession: newProfession
+            };
+
+            await axios.put('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/update-name', updatedData, config);
+            setUserData({ ...userData, user: updatedData });
+
+            // Deshabilitar el modo de edición
+            switch (field) {
+                case 'name':
+                    setIsEditingName(false);
+                    break;
+                case 'email':
+                    setIsEditingEmail(false);
+                    break;
+                case 'city':
+                    setIsEditingCity(false);
+                    break;
+                case 'phone':
+                    setIsEditingPhone(false);
+                    break;
+                case 'profession':
+                    setIsEditingProfession(false);
+                    break;
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.error(`Error al actualizar ${field}:`, error);
+            setError(error);
+        }
+    };
+
+
+
 
 
 
@@ -164,7 +220,7 @@ const Profile = () => {
 
 
 
-    //Estudiar parte de este codigo
+    /*
     const handleNameClick = () => {
         setIsEditingName(true);
 
@@ -175,6 +231,8 @@ const Profile = () => {
     const handleNameChange = (e) => {
         setNewName(e.target.value);
     };
+
+
 
 
 
@@ -199,6 +257,7 @@ const Profile = () => {
             setError(error);
         }
     };
+    */
 
 
 
@@ -215,6 +274,8 @@ const Profile = () => {
         // Optionally, refresh user data to get the updated image
         // getUserInfo();
     };
+
+
 
 
 
@@ -259,50 +320,61 @@ const Profile = () => {
 
             { }
 
-
             <div className="containerProfilePhoto">
-
-                {/* <p>  Nombre : {userData?.user.nameuser || "Información no disponible"} </p>*/}
-
                 <p>Nombre:
                     {isEditingName ? (
                         <>
-                            <input
-                                type="text"
-                                value={newName}
-                                onChange={(e) => setNewName(e.target.value)}/* onChange={handleNameChange}*/
-                            />
-                            <button onClick={handleNameSubmit}>✔</button>
+                            <input value={newName} onChange={(e) => setNewName(e.target.value)} />
+                            <button onClick={() => handleFieldSubmit('name')}>✔</button>
                         </>
                     ) : (
-                        <span onClick={handleNameClick}>{userData?.user.nameuser || "Información no disponible"}</span>
+                        <span onClick={() => setIsEditingName(true)}>{userData?.user.nameuser}</span>
                     )}
                 </p>
-
                 <p>Email:
-                    {isEditingName ? (
+                    {isEditingEmail ? (
                         <>
-                            <input
-                                type="text"
-                                value={newEmail}
-                                onChange={(e) => setNewEmail(e.target.value)}/* onChange={handleNameChange}*/
-                            />
-                            <button onClick={handleNameSubmit}>✔</button>
+                            <input value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+                            <button onClick={() => handleFieldSubmit('email')}>✔</button>
                         </>
                     ) : (
-                        <span onClick={handleNameClick}>{userData?.user.email || "Información no disponible"}</span>
+                        <span onClick={() => setIsEditingEmail(true)}>{userData?.user.email}</span>
                     )}
                 </p>
-
-
-
-
-                <p> Email : {userData?.user.email || "Información no disponible"} </p>
-                <p>Ciudad: {userData?.user.city || "Informacion no disponible"}</p>
-                <p>Telefono: {userData?.user.phone || "Informacion no disponible"}</p>
-                <p>Cargo: {userData?.user.profession || "Informacion no disponible"}</p>
-
+                <p>Ciudad:
+                    {isEditingCity ? (
+                        <>
+                            <input value={newCity} onChange={(e) => setNewCity(e.target.value)} />
+                            <button onClick={() => handleFieldSubmit('city')}>✔</button>
+                        </>
+                    ) : (
+                        <span onClick={() => setIsEditingCity(true)}>{userData?.user.city}</span>
+                    )}
+                </p>
+                <p>Teléfono:
+                    {isEditingPhone ? (
+                        <>
+                            <input value={newPhone} onChange={(e) => setNewPhone(e.target.value)} />
+                            <button onClick={() => handleFieldSubmit('phone')}>✔</button>
+                        </>
+                    ) : (
+                        <span onClick={() => setIsEditingPhone(true)}>{userData?.user.phone}</span>
+                    )}
+                </p>
+                <p>Profesión:
+                    {isEditingProfession ? (
+                        <>
+                            <input value={newProfession} onChange={(e) => setNewProfession(e.target.value)} />
+                            <button onClick={() => handleFieldSubmit('profession')}>✔</button>
+                        </>
+                    ) : (
+                        <span onClick={() => setIsEditingProfession(true)}>{userData?.user.profession}</span>
+                    )}
+                </p>
             </div>
+
+
+
 
 
 
