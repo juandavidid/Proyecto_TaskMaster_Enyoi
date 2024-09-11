@@ -93,6 +93,9 @@ exports.updateUseProfile = async (req, res) => {
     try {
         const userId = req.user.id;
         /*const { nameuser, email, city, phone, profession } = req.body;*/
+        const updateFields = {}; // Crear un objeto para los campos a actualizar
+
+
 
         // Solo agregar campos al objeto si están definidos en la solicitud
         if (req.body.nameuser) updateFields.nameuser = req.body.nameuser;
