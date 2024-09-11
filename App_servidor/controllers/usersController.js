@@ -92,10 +92,20 @@ exports.updateUseProfile = async (req, res) => {
 
     try {
         const userId = req.user.id;
-        const { nameuser, email, city, phone, profession } = req.body;
+        /*const { nameuser, email, city, phone, profession } = req.body;*/
+
+        // Solo agregar campos al objeto si están definidos en la solicitud
+        if (req.body.nameuser) updateFields.nameuser = req.body.nameuser;
+        if (req.body.email) updateFields.email = req.body.email;
+        if (req.body.city) updateFields.city = req.body.city;
+        if (req.body.phone) updateFields.phone = req.body.phone;
+        if (req.body.profession) updateFields.profession = req.body.profession;
+
+
 
         // Buscar y actualizar el nombre del usuario
-        const user = await Users.findByIdAndUpdate(userId, { nameuser, email, city, phone, profession }, { new: true }).select('-password');
+        /*const user = await Users.findByIdAndUpdate(userId, { nameuser, email, city, phone, profession }, { new: true }).select('-password');*/
+        const user = await Users.findByIdAndUpdate(userId, updateFields, { new: true }).select('-password');
 
         if (!user) {
             return res.status(404).json({ msg: 'Usuario no encontrado' });
