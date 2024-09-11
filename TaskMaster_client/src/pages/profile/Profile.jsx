@@ -209,16 +209,7 @@ const Profile = () => {
     };
 
 
-
-
-
-
-
     //----------------------------------------------------------------------------------------------
-
-
-
-
 
     /*
     const handleNameClick = () => {
@@ -231,10 +222,6 @@ const Profile = () => {
     const handleNameChange = (e) => {
         setNewName(e.target.value);
     };
-
-
-
-
 
     const handleNameSubmit = async () => {
 
@@ -258,9 +245,6 @@ const Profile = () => {
         }
     };
     */
-
-
-
 
 
     console.log("Informacio de Usuario", userData);

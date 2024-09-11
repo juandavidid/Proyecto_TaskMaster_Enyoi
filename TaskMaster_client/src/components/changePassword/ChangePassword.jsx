@@ -37,11 +37,10 @@ const ChangePassword = () => {
 
 
     return (
-        <div>
-            <h1>Hola pagina para cambio de contraseña</h1>
+        <div className="password-form-container">
             <h2>Cambiar Contraseña</h2>
-            <form>
-                <div>
+            <form className="password-form">
+                <div className="form-group">
                     <label>Contraseña Actual:</label>
                     <input
                         type="password"
@@ -51,9 +50,7 @@ const ChangePassword = () => {
                     />
                 </div>
 
-
-
-                <div>
+                <div className="form-group">
                     <label>Nueva Contraseña:</label>
                     <input
                         type="password"
@@ -61,13 +58,14 @@ const ChangePassword = () => {
                         onChange={(e) => setNewPassword(e.target.value)}
                         required
                     />
-
                 </div>
 
-                <button type="submit" onClick={handleChangePassword}>Guardar Cambios</button>
+                <button type="submit" onClick={handleChangePassword} className="submit-button">
+                    Guardar Cambios
+                </button>
             </form>
 
-            {message && <p>{message}</p>}
+            {message && <p className="message">{message}</p>}
         </div>
 
     );

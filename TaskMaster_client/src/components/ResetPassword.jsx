@@ -20,7 +20,7 @@ const ResetPassword = () => {
             navigate("/login")
 
         } catch (error) {
-            alert('Error al restablecer la contraseña');
+            alert('Error al restablecer la contraseña', error);
 
         }
 
@@ -28,12 +28,8 @@ const ResetPassword = () => {
     }
 
     return (
-        <div>
-            <h1>
-                PAGINA PARA RESTAURA LA CONTRASEÑA
-            </h1>
-
-            <form>
+        <div className="reset-password-container">
+            <form className="reset-password-form">
                 <h2>Restablecer Contraseña</h2>
                 <input
                     type="password"
@@ -42,10 +38,10 @@ const ResetPassword = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit" onClick={handleClick}>Restablecer</button>
+                <button type="submit" onClick={handleClick} className="submit-button">
+                    Restablecer
+                </button>
             </form>
-
-
         </div>
     )
 }
