@@ -19,9 +19,6 @@ const Register = () => {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
-
-
-
     const handleClick = async (e) => {
 
         e.preventDefault(); // Evitar el comportamiento por defecto del formulario

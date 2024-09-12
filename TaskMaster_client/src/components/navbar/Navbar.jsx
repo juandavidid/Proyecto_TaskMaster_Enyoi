@@ -54,17 +54,15 @@ const Navbar = ({ showSecurity }) => {
             </div>
 
 
-
-
-
             {isOpen && (
                 <Dropdownmenu />
             )}
 
             {showSecurity && (
                 <div className="security-option">
+
                     <Link to="/changePassword">
-                        <span>Seguridad</span>
+                        <span>Cambio de contraseña</span>
                     </Link>
 
                 </div>

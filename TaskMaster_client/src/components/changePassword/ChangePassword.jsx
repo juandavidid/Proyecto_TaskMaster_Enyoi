@@ -1,6 +1,7 @@
 import './changePassword.css'
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const ChangePassword = () => {
@@ -8,6 +9,9 @@ const ChangePassword = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
+
 
     const handleChangePassword = async (e) => {
 
@@ -25,7 +29,15 @@ const ChangePassword = () => {
                     'x-auth-token': `${token}`,
                 },
             });
+
+
             setMessage(res.data.message);
+            // Redirigir a la página de inicio después de unos segundos
+            setTimeout(() => {
+                navigate('/profile');  // Ajusta la ruta a la que deseas redirigir
+            }, 2000);  // 2 segundos de espera antes de redirigir
+
+
 
 
 

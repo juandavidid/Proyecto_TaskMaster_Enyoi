@@ -6,6 +6,7 @@ import Navbar from '../../components/navbar/Navbar';
 import Profilephoto from '../../components/profilephoto/Profilephoto';
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const [userData, setUserData] = useState(null);
@@ -277,12 +278,9 @@ const Profile = () => {
     return (
         <div className="container">
             {/* Pasando showSecurity como true para mostrar "Seguridad" */}
-            <Navbar className="cabecera" showSecurity={true} />
-
-
+            <Navbar className="cabecera" showSecurity={false} />
 
             <h2 className="tituloPerfil">Foto de Perfil</h2>
-
 
             <div className="containerProfilePhoto">
 
@@ -355,11 +353,10 @@ const Profile = () => {
                         <span onClick={() => setIsEditingProfession(true)}>{userData?.user.profession}</span>
                     )}
                 </p>
+
+                <p>Contraseña: <Link to="/changePassword" style={{ textDecoration: 'none' }}><span> xxxxxxx </span></Link></p>
+
             </div>
-
-
-
-
 
 
             {Openphoto && <Profilephoto userId={userData?.user._id} onClose={handleClosePhoto} />}

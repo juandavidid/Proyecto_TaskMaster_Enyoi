@@ -3,6 +3,7 @@ import './projects.css'
 import axios from 'axios';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,6 +11,8 @@ import { useState } from 'react';
 const Projects = () => {
     const [projname, setProjname] = useState('');
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate();
 
 
     const createProject = async () => {
@@ -30,6 +33,16 @@ const Projects = () => {
 
             // Manejar la respuesta si el proyecto se crea correctamente
             console.log('Proyecto creado:', response.data);
+
+
+            // Establecer el mensaje de éxito
+            setSuccessMessage('Proyecto creado con éxito!');
+
+            // Redirigir a la página de inicio después de unos segundos
+            setTimeout(() => {
+                navigate('/home');  // Ajusta la ruta a la que deseas redirigir
+            }, 2000);  // 2 segundos de espera antes de redirigir
+
         } catch (error) {
             console.error('Hubo un error creando el proyecto', error);
             setError('Error creando el proyecto');
@@ -63,6 +76,10 @@ const Projects = () => {
                 {error && <p className="mensajeError">{error}</p>}
                 <button className="btnProjecto" type="submit">Crear Proyecto</button>
             </form>
+
+            {/* Mostrar mensajes de éxito o error */}
+            {successMessage && <p>{successMessage}</p>}
+            {error && <p>{error}</p>}
 
         </div>
     )

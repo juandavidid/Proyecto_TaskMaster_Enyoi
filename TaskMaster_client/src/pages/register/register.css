@@ -1,9 +1,11 @@
 .containerMain {
-    margin: 100px 10px 10px 10px;
-    height: 400px;
+
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #2e2e30;
+
 
 
 }
@@ -13,13 +15,13 @@
 }
 
 .textName {
-    margin-left: 55px;
+    margin-left: 120px;
     width: 330px;
     height: 30px;
 }
 
 .textEmail {
-    margin-left: 55px;
+    margin-left: 120px;
     width: 330px;
     height: 30px;
 
@@ -28,27 +30,27 @@
 
 
 .textPassword {
-    margin-left: 55px;
+    margin-left: 120px;
     width: 332px;
     height: 30px;
 }
 
 .textCity {
-    margin-left: 55px;
+    margin-left: 120px;
     width: 332px;
     height: 30px;
 
 }
 
 .textPhone {
-    margin-left: 55px;
+    margin-left: 120px;
     width: 332px;
     height: 30px;
 
 }
 
 .textProfession {
-    margin-left: 55px;
+    margin-left: 120px;
     width: 332px;
     height: 30px;
 
@@ -57,7 +59,7 @@
 
 
 .btRegister {
-    margin: 25px 0px 0px 55px;
+    margin: 25px 0px 0px 120px;
     width: 340px;
     height: 35px;
     color: aliceblue;
@@ -66,6 +68,7 @@
 
 .clauseText {
     margin-top: 45px;
+    margin-left: 50px;
 }
 
 span {

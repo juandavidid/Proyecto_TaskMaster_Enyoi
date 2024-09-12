@@ -248,33 +248,6 @@ const Home = () => {
                         )}
 
 
-                        {/*
-                         {selectedProjectId && (
-                            <div>
-                                
-                                <h3>Tareas del Proyecto</h3>
-                                <ul>
-                                    {console.log("Informacion de ", tasks)}
-                                    {tasks.map(task => (
-                                        console.log(task),
-                                        <li key={task._id} onClick={() => {
-                                            setSelectedTask({
-                                                ...task,
-                                                projectName: projects.find(p => p._id === task.projectId)?.projname || 'Sin proyecto',
-                                                priority: task.priority || 'No especificada',
-                                                description: task.description || 'Sin descripción',
-                                                state: task.state || 'Sin estado' 
-                                            }
-                                            ); toggleDrawer()
-                                        }}>{task.taskname}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                        
-                        
-                        
-                        */}
 
 
 
@@ -286,8 +259,8 @@ const Home = () => {
             case 'proyectos':
                 return (
                     <div>
-                        <h3>Proyectos</h3>
-                        <ul>
+                        <h3 className="textProje">Proyectos</h3>
+                        <ul className="nameProject">
                             {projects.map(project => (
                                 <li key={project._id}>{project.projname}</li>
                             ))}
@@ -298,69 +271,6 @@ const Home = () => {
                 return null;
         }
     };
-
-    /*
-    const handleSaveTask = async (newTaskName) => {
-        const updatedTask = {
-            ...selectedTask,
-            taskname: newTaskName
-        };
-     
-        try {
-            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${selectedTask._id}`, updatedTask, {
-                headers: { 'x-auth-token': token }
-            });
-            setTasks(tasks.map(t => t._id === selectedTask._id ? response.data : t));
-            setSelectedTask(response.data);
-            setShowSuccessMessage(true);
-        } catch (error) {
-            console.error("Error al actualizar la tarea:", error);
-        }
-    };
-    */
-
-
-
-
-    /*
-    const handleSaveTask = async (updatedTask) => {
-        console.log("INFORMACION ACTUALIZAR", updatedTask);
-        // Validar que el nombre de la tarea no esté vacío
-        if (!updatedTask.taskname.trim()) {
-            console.error("El nombre de la tarea no puede estar vacío.");
-            return; // Salir de la función si el nombre de la tarea está vacío
-        }
-     
-        //console.log("Datos de la tarea a actualizar:", updatedTask); // Agregar esto para depurar
-     
-        // ESTA PARTE DEL CODIGO ESTA EN COMENTARIOS
-        try {
-            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${selectedTask._id}`, updatedTask, {
-                headers: { 'x-auth-token': token }
-            });
-            setTasks(tasks.map(t => t._id === selectedTask._id ? response.data : t));
-            setSelectedTask(response.data);
-            setShowSuccessMessage(true);
-        } catch (error) {
-            console.error("Error al actualizar la tarea:", error);
-        }
-        //-----------------------------------------------------------------------------------------------
-        
-        try {
-            const response = await axios.put(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/tasks/${updatedTask._id}`, updatedTask, {
-                headers: { 'x-auth-token': token }
-            });
-            setTasks(tasks.map(t => t._id === updatedTask._id ? response.data : t));
-            setSelectedTask(response.data);
-            setShowSuccessMessage(true);
-        } catch (error) {
-            console.error("Error al actualizar la tarea:", error);
-        }
-     
-    };
-    */
-
-
 
 
 

@@ -171,7 +171,8 @@ body {
 
 .selecProjec {
     margin-left: 45px;
-    margin-bottom: 100px;
+    margin-bottom: 90px;
+    width: 320px;
 }
 
 .textH3 {
@@ -246,4 +247,19 @@ body {
 .grid-item p {
     font-size: 0.9em;
     color: #777;
+}
+
+
+/*---Estilo de proyecto----*/
+
+.textProje {
+    margin-left: 45px;
+    color: #f5f4ec;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.nameProject {
+    color: #f5f4ec;
+    font-size: 1.3em;
 }

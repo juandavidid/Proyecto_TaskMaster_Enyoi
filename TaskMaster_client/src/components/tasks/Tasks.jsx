@@ -1,6 +1,7 @@
 import './tasks.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Tasks = () => {
 
@@ -13,13 +14,19 @@ const Tasks = () => {
     const [priority, setPriority] = useState('Media'); // Estado para la prioridad con un valor por defecto
 
     const [dueDate, setDueDate] = useState(''); // Estado para la fecha de entrega
+    const navigate = useNavigate();
 
     useEffect(() => {
+
         const fetchProjects = async () => {
+
             try {
                 const token = localStorage.getItem('authToken');
+
                 const response = await axios.get(
+
                     'https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/projects',
+
                     {
                         headers: {
                             'x-auth-token': token
@@ -28,7 +35,9 @@ const Tasks = () => {
                 );
 
                 console.log(response.data);
+
                 setProjects(response.data.projects || []);
+
             } catch (error) {
                 console.error('Error obteniendo los proyectos:', error);
             }
@@ -39,8 +48,11 @@ const Tasks = () => {
 
 
     const handleCreateTask = async () => {
+
         try {
+
             const token = localStorage.getItem('authToken'); // Suponiendo que el token se almacena en localStorage
+
             console.log("INFORMACION DE FECHA", dueDate);
 
 
@@ -67,6 +79,11 @@ const Tasks = () => {
                 setSuccessMessage('');
             }, 3000);
 
+            // Redirigir a la página de inicio después de unos segundos
+            setTimeout(() => {
+                navigate('/home');  // Ajusta la ruta a la que deseas redirigir
+            }, 2000);  // 2 segundos de espera antes de redirigir
+
             console.log('Tarea creada:', response.data);
         } catch (error) {
             console.error('Error creando la tarea:', error);
@@ -76,7 +93,6 @@ const Tasks = () => {
     return (
         <div className="containerTask">
 
-            {successMessage && <p className="pTask">{successMessage}</p>} {/* Mostrar el mensaje de éxito */}
 
             <form className="formTask" onSubmit={(e) => { e.preventDefault(); handleCreateTask(); }}>
 
@@ -122,6 +138,7 @@ const Tasks = () => {
                 <div>
 
                     <label className="labelTask">Fecha de Entrega:</label>
+
                     <input
                         className="inputTask"
                         type="date"
@@ -156,6 +173,9 @@ const Tasks = () => {
                 <button className="buttonTask" type="submit">Crear Tarea</button>
 
             </form>
+
+            {successMessage && <p className="pTask">{successMessage}</p>} {/* Mostrar el mensaje de éxito */}
+
         </div>
     )
 }
