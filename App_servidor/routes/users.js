@@ -29,18 +29,6 @@ router.get('/Information', auth, usersController.getUser);
 // api/users
 
 
-/*
-
-router.put('/update-name', auth, [
-
-    check('nameuser', 'El nombre np puede estar vacio').trim().isLength({ min: 1 }),
-    check('email', 'Debe ser un email válido').isEmail(),
-    check('city', 'La ciudad no puede estar vacía').trim().isLength({ min: 1 }),
-    check('phone', 'El teléfono no puede estar vacío').trim().isLength({ min: 1 }),
-    check('profession', 'El cargo no puede estar vacío').trim().isLength({ min: 1 })
-], usersController.updateUserName);
-*/
-
 router.put('/update-name', auth, [
 
     check('nameuser').optional().trim().isLength({ min: 1 }).withMessage('El nombre no puede estar vacío'),

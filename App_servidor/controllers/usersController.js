@@ -124,40 +124,54 @@ exports.updateUseProfile = async (req, res) => {
 
 
 // Ruta para subir una imagen de perfil
+
 exports.uploadProfileImage = async (req, res) => {
 
+    // Imprime la información del cuerpo de la solicitud en la consola para depuración.
     console.log("Informacion del insomnia", req.body);
 
     try {
-        const userId = req.user.id; // Obtener el ID del usuario desde el middleware de autenticación
-        const file = req.files?.profilePhoto; // Asegúrate de que `req.files` y `profilePhoto` existan
 
+        // Obtiene el ID del usuario desde el middleware de autenticación.
+        const userId = req.user.id;
+
+        // Accede al archivo enviado en la solicitud. `req.files` es un objeto que contiene los archivos cargados.
+        // `profilePhoto` es el nombre del campo en el formulario de carga de archivos.
+        const file = req.files?.profilePhoto;
+
+        // Si no se ha enviado un archivo, responde con un error 400 y un mensaje.
         if (!file) {
             return res.status(400).json({ msg: 'No se ha enviado ninguna imagen' });
         }
 
-        //--------------CODIGO NUEVO--------------
-
-        // Validar tipo de archivo
+        // Define los tipos de archivo permitidos para la imagen de perfil.
         const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+
+        // Verifica si el tipo MIME del archivo cargado está en la lista de tipos permitidos.
+        // Si no está permitido, responde con un error 400 y un mensaje.
         if (!allowedTypes.includes(file.mimetype)) {
             return res.status(400).json({ msg: 'Tipo de archivo no permitido. Solo se permiten imágenes.' });
         }
 
 
 
-        //-----------------------------------------
 
 
 
 
+        // Busca al usuario en la base de datos por su ID.
         const user = await Users.findById(userId);
+        // Si el usuario no se encuentra, responde con un error 404 y un mensaje.
         if (!user) return res.status(404).json({ msg: 'Usuario no encontrado' });
 
+        // Actualiza el campo `profilePhoto` del usuario con los datos del archivo.
+        // `profilePhotoType` almacena el tipo MIME del archivo.
         user.profilePhoto = file.data;
         user.profilePhotoType = file.mimetype;
 
+        // Guarda los cambios en la base de datos.
         await user.save();
+        // Responde con un mensaje de éxito.
         res.json({ msg: 'Imagen de perfil actualizada con éxito' });
     } catch (err) {
         console.error(err.message);
@@ -170,16 +184,19 @@ exports.uploadProfileImage = async (req, res) => {
 exports.getProfileImage = async (req, res) => {
 
     try {
+        // Busca al usuario en la base de datos por el ID proporcionado en los parámetros de la solicitud.
         const user = await Users.findById(req.params.userId);
+
+        // Si el usuario no se encuentra o no tiene una imagen de perfil, responde con un error 404 y un mensaje.
         if (!user || !user.profilePhoto) return res.status(404).json({ msg: 'Imagen no encontrada' });
 
 
-        // Convertir el Buffer a base64
-        //const base64Image = user.profilePhoto.toString('base64');
 
 
 
+        // Configura el tipo de contenido de la respuesta con el tipo MIME de la imagen.
         res.set('Content-Type', user.profilePhotoType);
+        // Envía los datos de la imagen de perfil como respuesta.
         res.send(user.profilePhoto);
 
     } catch (err) {
