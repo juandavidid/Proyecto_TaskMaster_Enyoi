@@ -4,9 +4,7 @@ const crypto = require('crypto');
 const User = require('../models/Users'); // Tu modelo de usuario 
 const sendEmail = require('../utils/sendEmail');// Función para enviar emails
 
-
 router.post('/forgot-password', async (req, res) => {
-
 
     console.log("Informacion del Insomnia", req.body);
 
