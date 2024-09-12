@@ -37,8 +37,11 @@ const Register = () => {
         try {
 
             //HACER LA SOLICITUD REGISTRO  METODO POST 
+
             const response = await axios.post('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users', userData);
+
             console.log(response);
+
             setSuccessMessage('Registro exitoso!'); // Mensaje de éxito
             setError(''); // Limpiar errores
 

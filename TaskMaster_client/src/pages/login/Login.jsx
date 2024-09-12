@@ -8,8 +8,10 @@ import { useAuthContext } from '../../context/AuthContext';
 
 const Login = () => {
 
+
     // ESTADOS PARA LOS CAMPOS DEL FORMULARIO
     const [email, setEmail] = useState('');
+
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
@@ -20,6 +22,7 @@ const Login = () => {
 
     // METODO DE CONTEXTO
     const { login } = useAuthContext();
+
     console.log("Variable Login", login);
 
 
@@ -40,7 +43,9 @@ const Login = () => {
 
             //Almacenar el token en localStorage
             const token = responseLogin.data.token;
+
             //localStorage.setItem('token', token);
+
 
             //ENVIA EL TOKEN DEL USUARIO
             login(token);
@@ -60,8 +65,11 @@ const Login = () => {
 
 
         } catch (err) {
+
             setError('Error al registrar el usuario: ' + err.response.data.msg); // Manejar errores
+
             setSuccessMessage(''); // Limpiar mensaje de éxito
+
 
 
         }
@@ -72,9 +80,13 @@ const Login = () => {
 
 
     return (
+
         <div className="containerlogin">
+
             <h1> Para comenzar, Inicia sesion</h1>
+
             <form>
+
                 {/*CAMPO DE EMAIL */}
 
                 <div>

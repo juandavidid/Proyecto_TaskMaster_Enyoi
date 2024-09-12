@@ -78,6 +78,7 @@ const Profile = () => {
                         },
                     });
                 } catch (error) {
+
                     // Si la imagen no se encuentra (404), manejar el error y continuar
                     if (error.response && error.response.status === 404) {
                         console.log('Imagen de perfil no encontrada, se continúa sin imagen.');
@@ -92,38 +93,6 @@ const Profile = () => {
                         console.error('Error al obtener la imagen de perfil:', error);
                     }
                 }
-
-
-
-
-                /*
- 
-                // Obtener la imagen de perfil del usuario
-                const photoResponse = await axios.get(`https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/profile/photo/${userId}`, {
- 
-                    responseType: 'arraybuffer', // Asegurarse de recibir los datos como arraybuffer
-                    headers: {
-                        'x-auth-token': token,
-                    },
- 
-                });
-                const base64Image = arrayBufferToBase64(photoResponse.data);
-                const profilePhotoType = photoResponse.headers['content-type'];
-                // Verifica los datos del perfil de usuario
-                console.log('profilePhotoType:', response.data.user.profilePhotoType);
-                console.log('profilePhoto:', response.data.user.profilePhoto);
-                // Manejar la respuesta
-                console.log('Información del usuario:', response.data);
-                //setUserData(response.data);
-                setUserData({
-                    ...response.data,
-                    user: {
-                        ...response.data.user,
-                        profilePhoto: base64Image,
-                        profilePhotoType: profilePhotoType,
-                    },
-                });
-                */
 
 
                 setNewName(response.data?.user.nameuser); // Inicializar con el nombre actual
@@ -162,7 +131,9 @@ const Profile = () => {
         return window.btoa(binary);
     };
 
-    //---------------------------------CODIGO NUEVO------------------------------------------------
+
+
+    // CODIGO PARA HACER LA PETECION DE CAMBIAR VALORES 
     const handleFieldSubmit = async (field) => {
         const token = localStorage.getItem('authToken');
         const config = {
@@ -210,42 +181,7 @@ const Profile = () => {
     };
 
 
-    //----------------------------------------------------------------------------------------------
 
-    /*
-    const handleNameClick = () => {
-        setIsEditingName(true);
-
-
-
-    };
-
-    const handleNameChange = (e) => {
-        setNewName(e.target.value);
-    };
-
-    const handleNameSubmit = async () => {
-
-        const token = localStorage.getItem('authToken');
-
-        const config = {
-            headers: {
-                'x-auth-token': `${token}`
-            }
-        };
-
-
-
-        try {
-            const response = await axios.put('https://proyecto-taskmaster-enyoi-app-servidor.onrender.com/api/users/update-name', { nameuser: newName, email: newEmail }, config);
-            setUserData({ ...userData, user: { ...userData.user, nameuser: newName, email: newEmail } });
-            setIsEditingName(false);
-        } catch (error) {
-            console.error('Error al actualizar el nombre del usuario:', error);
-            setError(error);
-        }
-    };
-    */
 
 
     console.log("Informacio de Usuario", userData);
@@ -264,8 +200,6 @@ const Profile = () => {
 
 
 
-
-
     if (loading) {
         return <p>Cargando...</p>; // Mostrar un mensaje de carga mientras se obtiene la información
     }
@@ -276,7 +210,9 @@ const Profile = () => {
 
 
     return (
+
         <div className="container">
+
             {/* Pasando showSecurity como true para mostrar "Seguridad" */}
             <Navbar className="cabecera" showSecurity={false} />
 
@@ -358,7 +294,7 @@ const Profile = () => {
 
             </div>
 
-
+            {/*SE RENDERIZA O MUESTRA EL COMPONENTE QUE VA SUBIR LA IMAGEN */}
             {Openphoto && <Profilephoto userId={userData?.user._id} onClose={handleClosePhoto} />}
         </div >
     )
